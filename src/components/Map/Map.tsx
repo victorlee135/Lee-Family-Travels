@@ -1,7 +1,33 @@
-import { MapContainer, LayersControl} from 'react-leaflet';
+import { MapContainer, LayersControl, LayerGroup } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
+import Marker from '../Marker';
+import Tiles from "../Tiles/Tiles"
+import type { IPin } from '../../lib';
+import { createClusterCustomIcon } from './utils';
+import type { IFilter } from './types';
+import { DEFAULT_TILES, DEFAULT_FILTERS } from './config';
 
-export default function Map() {
+function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
+  return (
+    <LayersControl.Overlay checked={checked} name={name}>
+      <LayerGroup>
+        <MarkerClusterGroup
+          iconCreateFunction={createClusterCustomIcon}
+          showCoverageOnHover={false}
+        >
+          {pins
+            .filter((pin: IPin) => pin.type === type)
+            .map((pin: IPin) => (
+              <Marker key={`${pin.coordinates}-${pin.author}`} {...pin} />
+            ))}
+        </MarkerClusterGroup>
+      </LayerGroup>
+    </LayersControl.Overlay>
+  );
+}
+
+export default function Map({ pins }: { pins: IPin[] }) {
   return (
     <MapContainer
       center={[41.56157392223945, -8.397397824887639]}
@@ -9,6 +35,12 @@ export default function Map() {
       scrollWheelZoom={true}
       style={{ height: '100vh' }}
     >
+      <LayersControl position="topright">
+        {DEFAULT_TILES.map((tile) => (
+          <Tiles key={tile.name} {...tile} />
+        ))}
+        {DEFAULT_FILTERS.map((filter: IFilter) => filterPins(pins, filter))}
+      </LayersControl>
     </MapContainer>
   );
 }

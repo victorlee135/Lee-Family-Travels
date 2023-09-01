@@ -10,7 +10,7 @@ import { DEFAULT_TILES, DEFAULT_FILTERS } from './config';
 
 function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
   return (
-    <LayersControl.Overlay checked={checked} name={name}>
+    <LayersControl.Overlay checked={checked} name={name} key={name}>
       <LayerGroup>
         <MarkerClusterGroup
           iconCreateFunction={createClusterCustomIcon}

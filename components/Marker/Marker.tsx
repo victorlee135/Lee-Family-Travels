@@ -48,9 +48,8 @@ const Marker = ({
           <Image
             alt={`${name} at ${city}`}
             src={photo}
-            layout="fill"
-            objectFit="cover"
-            style={{ borderRadius: '10px', overflow: 'hidden' }}
+            fill
+            className={styles.image}
           />
         </div>
       </Popup>

@@ -8,6 +8,6 @@ export const PLACES: IPin[] = [
       country: 'Spain',
       coordinates: [41.5888, 1.8422],
       date: '2023-08-01',
-      photo: '/photos/barcelona.jpeg'
+      photo: '/images/barcelona.jpeg'
     }
 ]

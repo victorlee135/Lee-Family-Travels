@@ -25,6 +25,7 @@
       "~/lib/*": ["./lib/*"],
       "~/pages/*": ["./pages/*"],
       "~/styles/*": ["./styles/*"]
+      
     },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],

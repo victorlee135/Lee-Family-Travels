@@ -9,6 +9,8 @@ import {
 } from '../../lib';
 import styles from './style.module.css';
 import { Icon } from 'leaflet';
+import { arrowIcon } from '../Map/Map';
+
 
 
 // 1. Creates the Marker image on the map 
@@ -21,7 +23,7 @@ export const getIcon: Icon = new Icon({
   iconSize: [45, 90]
 })
 
-const Marker = ({
+const PhotoMarker = ({
   type,
   coordinates,
   city,
@@ -66,4 +68,4 @@ const Marker = ({
   );
 };
 
-export default Marker;
+export default PhotoMarker;

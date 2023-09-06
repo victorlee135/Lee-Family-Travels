@@ -24,6 +24,15 @@ export enum ETheme {
     streetview?: string;
   }
 
+  export interface ITrip {
+    id: string;
+    tripName: string;
+    author: string | string[];
+    startDate: string;
+    endDate: string;
+    markers: IPin[];
+}
+
   export const getFullDateString = (date: string) => {
     return new Date(date).toLocaleDateString(undefined, {
       weekday: 'long',

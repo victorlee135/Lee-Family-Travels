@@ -1,12 +1,12 @@
 import L from 'leaflet';
-import { MapContainer, LayersControl, LayerGroup } from 'react-leaflet';
+import { MapContainer, LayersControl, LayerGroup, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-import Marker from '../Marker';
-import Tiles from "../Tiles/Tiles"
+import PhotoMarker from '../PhotoMarker';
 import type { IPin } from '../../lib';
-import type { ITyle } from '../Tiles';
 import { ETheme } from '../../lib';
+import Trip from '../Trip';
+import { ITrip } from '../../lib';
 
 
 export interface IFilter {
@@ -24,24 +24,14 @@ export const createClusterCustomIcon = function (cluster) {
   });
 };
 
+export const arrowIcon = L.divIcon({
+  className: 'custom-icon',
+  html: '<svg width="20" height="20"><polygon points="0,0 10,10 20,0" fill="blue"/></svg>',
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
+});
 
-export const DEFAULT_TILES: ITyle[] = [
-  {
-    id: ETheme.Earth,
-    name: 'Earth',
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-  },
-  {
-    id: ETheme.Light,
-    name: 'Light',
-    url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
-  },
-  {
-    id: ETheme.Dark,
-    name: 'Dark',
-    url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-  }
-];
+
 
 export const DEFAULT_FILTERS: IFilter[] = [
   {
@@ -63,29 +53,28 @@ export const DEFAULT_FILTERS: IFilter[] = [
 
 
 
-function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
-  return (
-    <LayersControl.Overlay checked={checked} name={name} key={name}>
-      <LayerGroup>
-        <MarkerClusterGroup
-          iconCreateFunction={createClusterCustomIcon}
-          showCoverageOnHover={false}
-        >
-          {pins
-            .filter((pin: IPin) => pin.type.includes(type))
-            .map((pin: IPin) => (
-              <Marker key={`${pin.coordinates}-${pin.author}`} {...pin} />
-            ))}
-        </MarkerClusterGroup>
-      </LayerGroup>
-    </LayersControl.Overlay>
-  );
-}
+// function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
+//   return (
+//     <LayersControl.Overlay checked={checked} name={name} key={name}>
+//       <LayerGroup>
+//         <MarkerClusterGroup
+//           iconCreateFunction={createClusterCustomIcon}
+//           showCoverageOnHover={false}
+//         >
+//           {pins
+//             .filter((pin: IPin) => pin.type.includes(type))
+//             .map((pin: IPin) => (
+//               <PhotoMarker key={`${pin.coordinates}-${pin.author}`} {...pin} />
+//             ))}
+//         </MarkerClusterGroup>
+//       </LayerGroup>
+//     </LayersControl.Overlay>
+//   );
+// }
 
 // Map -> ITrip -> IPin (have to add trip attribute)
 
-
-export default function Map({ pins }: { pins: IPin[] }) {
+export default function Map({ trips }: { trips: ITrip[] }) {
   return (
     <MapContainer
       center={[41.56157392223945, -8.397397824887639]}
@@ -93,14 +82,33 @@ export default function Map({ pins }: { pins: IPin[] }) {
       scrollWheelZoom={true}
       style={{ height: '100vh' }}
     >
-      <LayersControl position="topright">
-        {DEFAULT_TILES
-          .filter((tile: ITyle) => tile.name === "Earth")
-          .map((tile) => (
-            <Tiles key={tile.name} {...tile} />
-        ))}
-        {DEFAULT_FILTERS.map((filter: IFilter) => filterPins(pins, filter))}
-      </LayersControl>
+      <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+      {trips.map((trip: ITrip) => (
+        <Trip key={trip.id} markers={trip.markers} />
+      ))}
     </MapContainer>
-  );
+  )
 }
+
+
+// export default function Map({ pins }: { pins: IPin[] }) {
+//   return (
+//     <MapContainer
+//       center={[41.56157392223945, -8.397397824887639]}
+//       zoom={3.4}
+//       scrollWheelZoom={true}
+//       style={{ height: '100vh' }}
+//     >
+//       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+//       <MarkerClusterGroup
+//           iconCreateFunction={createClusterCustomIcon}
+//           showCoverageOnHover={false}
+//         >
+//           {pins
+//             .map((pin: IPin) => (
+//               <PhotoMarker key={`${pin.coordinates}-${pin.author}`} {...pin} />
+//             ))}
+//         </MarkerClusterGroup>
+//     </MapContainer>
+//   );
+// }

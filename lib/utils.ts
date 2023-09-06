@@ -11,12 +11,6 @@ export enum ETheme {
     changeTheme: (theme: ETheme) => void;
   };
 
-  // Type of marker on the map
-  export enum EPinType {
-    Sticker = 'sticker',
-    Picture = 'picture',
-    Special = 'special'
-  }
   
   // Marker on the map
   export interface IPin {
@@ -26,7 +20,7 @@ export enum ETheme {
     coordinates: [number, number];
     date: string;
     photo: string;
-    type?: EPinType;
+    type: string | string[];
     streetview?: string;
   }
 

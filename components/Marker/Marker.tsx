@@ -9,14 +9,17 @@ import {
 } from '../../lib';
 import styles from './style.module.css';
 import { Icon } from 'leaflet';
-import { EPinType } from '../../lib';
 
 
-export const getIcon = (type: EPinType): Icon =>
-  new Icon({
-    iconUrl: `/markers/${type}.svg`,
-    iconSize: [45, 90]
-  });
+// 1. Creates the Marker image on the map 
+// 2. Links the photo to the marker
+// 3. Provides details of the photo
+
+
+export const getIcon: Icon = new Icon({
+  iconUrl: `/markers/sticker.svg`,
+  iconSize: [45, 90]
+})
 
 const Marker = ({
   type,
@@ -27,7 +30,7 @@ const Marker = ({
   photo,
   date
 }: IPin) => {
-  const icon = getIcon(type);
+  const icon = getIcon;
   const name = useMemo(() => getNameString(author), [author]);
 
   return (

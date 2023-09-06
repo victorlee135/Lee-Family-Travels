@@ -45,20 +45,20 @@ export const DEFAULT_TILES: ITyle[] = [
 
 export const DEFAULT_FILTERS: IFilter[] = [
   {
-    name: 'Sticker',
-    type: 'sticker',
+    name: 'Victor',
+    type: 'victor',
     checked: true
   },
   {
-    name: 'Picture',
-    type: 'picture',
+    name: 'Phil',
+    type: 'phil',
     checked: true
   },
   {
-    name: 'Special',
-    type: 'special',
+    name: 'Mom',
+    type: 'mom',
     checked: true
-  }
+  },
 ];
 
 
@@ -72,7 +72,7 @@ function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
           showCoverageOnHover={false}
         >
           {pins
-            .filter((pin: IPin) => pin.type === type)
+            .filter((pin: IPin) => pin.type.includes(type))
             .map((pin: IPin) => (
               <Marker key={`${pin.coordinates}-${pin.author}`} {...pin} />
             ))}
@@ -82,6 +82,7 @@ function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
   );
 }
 
+// Map -> ITrip -> IPin (have to add trip attribute)
 
 
 export default function Map({ pins }: { pins: IPin[] }) {

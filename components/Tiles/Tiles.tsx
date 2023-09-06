@@ -1,7 +1,14 @@
 import { TileLayer, LayersControl } from 'react-leaflet';
 
 import useTheme from '../../hooks/useTheme';
-import type { ITyle } from './types';
+
+import type { ETheme } from '../../lib';
+
+export interface ITyle {
+  id: ETheme;
+  name: string;
+  url: string;
+}
 
 const Tiles = ({ id, url, name }: ITyle) => {
   const { theme, changeTheme } = useTheme();

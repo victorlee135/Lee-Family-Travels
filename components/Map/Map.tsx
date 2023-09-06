@@ -1,12 +1,67 @@
+import L from 'leaflet';
 import { MapContainer, LayersControl, LayerGroup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 import Marker from '../Marker';
 import Tiles from "../Tiles/Tiles"
 import type { IPin } from '../../lib';
-import { createClusterCustomIcon } from './utils';
-import type { IFilter } from './types';
-import { DEFAULT_TILES, DEFAULT_FILTERS } from './config';
+import type { ITyle } from '../Tiles';
+import { ETheme } from '../../lib';
+
+
+export interface IFilter {
+  name: string;
+  type: string;
+  checked: boolean;
+}
+
+
+export const createClusterCustomIcon = function (cluster) {
+  return L.divIcon({
+    html: `<span>${'+' + cluster.getChildCount()}</span>`,
+    className: 'custom-marker-cluster',
+    iconSize: L.point(30, 30, true)
+  });
+};
+
+
+export const DEFAULT_TILES: ITyle[] = [
+  {
+    id: ETheme.Earth,
+    name: 'Earth',
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+  },
+  {
+    id: ETheme.Light,
+    name: 'Light',
+    url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png'
+  },
+  {
+    id: ETheme.Dark,
+    name: 'Dark',
+    url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+  }
+];
+
+export const DEFAULT_FILTERS: IFilter[] = [
+  {
+    name: 'Sticker',
+    type: 'sticker',
+    checked: true
+  },
+  {
+    name: 'Picture',
+    type: 'picture',
+    checked: true
+  },
+  {
+    name: 'Special',
+    type: 'special',
+    checked: true
+  }
+];
+
+
 
 function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
   return (
@@ -27,6 +82,8 @@ function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
   );
 }
 
+
+
 export default function Map({ pins }: { pins: IPin[] }) {
   return (
     <MapContainer
@@ -36,8 +93,10 @@ export default function Map({ pins }: { pins: IPin[] }) {
       style={{ height: '100vh' }}
     >
       <LayersControl position="topright">
-        {DEFAULT_TILES.map((tile) => (
-          <Tiles key={tile.name} {...tile} />
+        {DEFAULT_TILES
+          .filter((tile: ITyle) => tile.name === "Earth")
+          .map((tile) => (
+            <Tiles key={tile.name} {...tile} />
         ))}
         {DEFAULT_FILTERS.map((filter: IFilter) => filterPins(pins, filter))}
       </LayersControl>

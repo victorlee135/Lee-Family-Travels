@@ -1,16 +1,22 @@
 import { useMemo } from 'react';
 import Image from 'next/image';
 import { Marker as MarkerContainer, Popup } from 'react-leaflet';
-
 import { IPin } from '../../lib';
 import {
   getFullDateString,
   getRelativeTimeString,
   getNameString
 } from '../../lib';
-import { getIcon } from './utils';
-
 import styles from './style.module.css';
+import { Icon } from 'leaflet';
+import { EPinType } from '../../lib';
+
+
+export const getIcon = (type: EPinType): Icon =>
+  new Icon({
+    iconUrl: `/markers/${type}.svg`,
+    iconSize: [45, 90]
+  });
 
 const Marker = ({
   type,

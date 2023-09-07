@@ -1,10 +1,7 @@
 import L from 'leaflet';
-import { MapContainer, LayersControl, LayerGroup, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-import PhotoMarker from '../PhotoMarker';
-import type { IPin } from '../../lib';
-import { ETheme } from '../../lib';
 import Trip from '../Trip';
 import { ITrip } from '../../lib';
 
@@ -51,27 +48,6 @@ export const DEFAULT_FILTERS: IFilter[] = [
   },
 ];
 
-
-
-// function filterPins(pins: IPin[], { name, type, checked }: IFilter) {
-//   return (
-//     <LayersControl.Overlay checked={checked} name={name} key={name}>
-//       <LayerGroup>
-//         <MarkerClusterGroup
-//           iconCreateFunction={createClusterCustomIcon}
-//           showCoverageOnHover={false}
-//         >
-//           {pins
-//             .filter((pin: IPin) => pin.type.includes(type))
-//             .map((pin: IPin) => (
-//               <PhotoMarker key={`${pin.coordinates}-${pin.author}`} {...pin} />
-//             ))}
-//         </MarkerClusterGroup>
-//       </LayerGroup>
-//     </LayersControl.Overlay>
-//   );
-// }
-
 // Map -> ITrip -> IPin (have to add trip attribute)
 
 export default function Map({ trips }: { trips: ITrip[] }) {
@@ -83,32 +59,12 @@ export default function Map({ trips }: { trips: ITrip[] }) {
       style={{ height: '100vh' }}
     >
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-      {trips.map((trip: ITrip) => (
-        <Trip key={trip.id} markers={trip.markers} />
-      ))}
+      <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon} showCoverageOnHover={false} >
+        {trips.map((trip: ITrip) => (
+          <Trip key={trip.id} markers={trip.markers} />
+        ))}
+      </MarkerClusterGroup>
+
     </MapContainer>
   )
 }
-
-
-// export default function Map({ pins }: { pins: IPin[] }) {
-//   return (
-//     <MapContainer
-//       center={[41.56157392223945, -8.397397824887639]}
-//       zoom={3.4}
-//       scrollWheelZoom={true}
-//       style={{ height: '100vh' }}
-//     >
-//       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-//       <MarkerClusterGroup
-//           iconCreateFunction={createClusterCustomIcon}
-//           showCoverageOnHover={false}
-//         >
-//           {pins
-//             .map((pin: IPin) => (
-//               <PhotoMarker key={`${pin.coordinates}-${pin.author}`} {...pin} />
-//             ))}
-//         </MarkerClusterGroup>
-//     </MapContainer>
-//   );
-// }

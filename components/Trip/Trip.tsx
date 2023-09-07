@@ -7,6 +7,9 @@ import { IPin } from '../../lib';
 import PhotoMarker from '../PhotoMarker';
 
 
+// Things to add
+// 1. details of trip (countries, date duration)
+// 2. arrows to go to next destination
 
 export default function Trip({ markers }: { markers: IPin[] }) {
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);

@@ -1,15 +1,14 @@
 import { useMemo } from 'react';
 import Image from 'next/image';
 import { Marker as MarkerContainer, Popup } from 'react-leaflet';
-import { IPin } from '../../lib';
 import {
   getFullDateString,
   getRelativeTimeString,
-  getNameString
+  getNameString,
+  IPin
 } from '../../lib';
 import styles from './style.module.css';
 import { Icon } from 'leaflet';
-import { arrowIcon } from '../Map/Map';
 
 
 

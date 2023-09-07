@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import { IPin, ITrip } from '~/lib/utils';
 import styles from './style.module.css';
 import { CSSTransition } from 'react-transition-group';
@@ -28,8 +29,20 @@ export interface SideBarProps {
         <div className={styles.sidebar}>
           <div className={styles.content}>
             <div className={styles.heading}>
+                <Image
+                    src="/markers/sticker-image.svg"
+                    alt="Lee Logo"
+                    width={180}
+                    height={61}
+                    style={{ cursor: 'pointer'}}
+                    priority 
+                />
               <br></br>
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <CSSTransition
               in={trips}
               timeout={250}

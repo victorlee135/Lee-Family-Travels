@@ -83,3 +83,70 @@ export const EUR_PICS: IPin[] = [
       photo: '/images/sintra.jpeg'
     }
 ]
+
+// Calgary -> Canmore -> Banff -> Lake Monroe -> Lake Moraine -> Peyto Lake -> Eureka
+export const BANFF_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Calgary',
+    country: 'Canada',
+    coordinates: [51.0447, -114.0719],
+    date: '2023-08-18',
+    photo: '/images/nice.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Canmore',
+    country: 'Canada',
+    coordinates: [51.0884, -115.3479],
+    date: '2023-08-18',
+    photo: '/images/frejus.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Banff',
+    country: 'Canada',
+    coordinates: [51.1784, -115.5708],
+    date: '2023-08-18',
+    photo: '/images/mountain.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Lake Louise',
+    country: 'Canada',
+    coordinates: [51.4254, -116.1773],
+    date: '2023-08-19',
+    photo: '/images/montpellier.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Lake Moraine',
+    country: 'Canada',
+    coordinates: [51.3217, -116.1860],
+    date: '2023-08-19',
+    photo: '/images/ibiza.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Peyto Lake',
+    country: 'Canada',
+    coordinates: [51.7255, -116.5227],
+    date: '2023-08-19',
+    photo: '/images/barcelona.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    type: 'victor',
+    city: 'Eureka',
+    country: 'USA',
+    coordinates: [48.8800, -115.0535],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+]

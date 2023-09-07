@@ -1,5 +1,5 @@
 import { ITrip } from "../lib";
-import { EUR_PICS } from "./places";
+import { EUR_PICS, BANFF_PICS } from "./places";
 
 // Trips to add
 // senior spring break
@@ -25,5 +25,13 @@ export const TripList: ITrip[] = [
       startDate: "July 27, 2023",
       endDate: "August 17, 2023",
       markers: EUR_PICS
+    },
+    {
+      id: "2",
+      tripName: "Banff 2023",
+      author: "Victor Lee",
+      startDate: "August 18, 2023",
+      endDate: "August 23, 2023",
+      markers: BANFF_PICS
     }
 ]

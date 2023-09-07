@@ -59,12 +59,9 @@ export default function Map({ trips }: { trips: ITrip[] }) {
       style={{ height: '100vh' }}
     >
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-      <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon} showCoverageOnHover={false} >
-        {trips.map((trip: ITrip) => (
+      {trips.map((trip: ITrip) => (
           <Trip key={trip.id} markers={trip.markers} />
         ))}
-      </MarkerClusterGroup>
-
     </MapContainer>
   )
 }

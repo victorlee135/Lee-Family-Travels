@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 import Trip from '../Trip';
@@ -48,16 +48,27 @@ export const DEFAULT_FILTERS: IFilter[] = [
   },
 ];
 
+export interface Props {
+  trips: ITrip[];
+  setMapRef: Function;
+}
+
 // Map -> ITrip -> IPin (have to add trip attribute)
 
-export default function Map({ trips }: { trips: ITrip[] }) {
+export default function Map({ trips, setMapRef }: Props) {
+  const Ref = () => {
+    setMapRef(useMap());
+    return null;
+  };
   return (
     <MapContainer
       center={[41.56157392223945, -8.397397824887639]}
       zoom={3.4}
       scrollWheelZoom={true}
       style={{ height: '100vh' }}
+      zoomControl={false}
     >
+      <Ref></Ref>
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
       {trips.map((trip: ITrip) => (
           <Trip key={trip.id} markers={trip.markers} />

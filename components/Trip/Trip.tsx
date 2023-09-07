@@ -34,7 +34,10 @@ export default function Trip({ markers }: { markers: IPin[] }) {
             {coordinates.length > 1 && (
                 <Polyline 
                     positions={coordinates} 
-                    color="blue" 
+                    color="black" 
+                    pathOptions={{
+                        dashArray: '5, 5',
+                    }}
                 />
             )}
         </>

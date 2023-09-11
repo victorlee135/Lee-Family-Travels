@@ -5,6 +5,8 @@ import { LatLngExpression } from 'leaflet';
 import { Polyline } from 'react-leaflet';
 import { IPin } from '../../lib';
 import PhotoMarker from '../PhotoMarker';
+import Image from 'next/image';
+import { useState } from 'react';
 
 
 // Things to add
@@ -13,7 +15,7 @@ import PhotoMarker from '../PhotoMarker';
 
 export default function Trip({ markers }: { markers: IPin[] }) {
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
-
+    
     return (
         <>
             {/* Render PhotoMarkers */}

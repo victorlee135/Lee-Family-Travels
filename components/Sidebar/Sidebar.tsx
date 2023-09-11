@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { IPin, ITrip } from '~/lib/utils';
 import styles from './style.module.css';
 import { CSSTransition } from 'react-transition-group';
-import TripStartLocation from '../TripStartLocation/TripStartLocation';
+import TripDetails from '../TripDetails/TripDetails';
 
 export interface SideBarProps {
     trips: ITrip[];
@@ -56,10 +56,11 @@ export interface SideBarProps {
             >
               <div>
                 {trips.map((trip: ITrip) => (
-                  <TripStartLocation
+                  <TripDetails
                     key={trip.id}
+                    isOpen="false"
                     mapRef={mapRef}
-                    setOpen={setOpen}
+                    setOpen="false"
                     trip={trip}
                   />
                 ))}

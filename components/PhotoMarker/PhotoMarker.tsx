@@ -12,8 +12,8 @@ import { Icon } from 'leaflet';
 
 
 export const getIcon: Icon = new Icon({
-  iconUrl: `/markers/sticker.svg`,
-  iconSize: [45, 45]
+  iconUrl: `/markers/greenmarker.svg`,
+  iconSize: [30, 30]
 })
 
 export interface PhotoMarkerProps{

@@ -54,7 +54,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
         <div className={styles.listings}>
           <div className={styles.marker} onClick={onClickTrip}>
             <Image
-              src={`/markers/sticker-image.svg`}
+              src={`/markers/redmarker.svg`}
               alt="Marker"
               title="Go to pin"
               width={70}

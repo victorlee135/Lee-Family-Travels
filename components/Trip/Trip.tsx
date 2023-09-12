@@ -22,13 +22,7 @@ export default function Trip({ markers }: { markers: IPin[] }) {
             {markers.map((marker, index) => (
                 <PhotoMarker 
                     key={index}
-                    type={marker.type}
-                    coordinates={marker.coordinates}
-                    city={marker.city}
-                    country={marker.country}
-                    author={marker.author}
-                    photo={marker.photo}
-                    date={marker.date}
+                    pin={marker}
                 />
             ))}
 
@@ -38,7 +32,7 @@ export default function Trip({ markers }: { markers: IPin[] }) {
                     positions={coordinates} 
                     color="black" 
                     pathOptions={{
-                        dashArray: '5, 5',
+                        dashArray: '4, 4',
                     }}
                 />
             )}

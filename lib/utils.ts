@@ -22,6 +22,7 @@ export enum ETheme {
     photo: string;
     type: string | string[];
     streetview?: string;
+    isOpen?: boolean;
   }
 
   export interface ITrip {

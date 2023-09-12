@@ -150,3 +150,46 @@ export const BANFF_PICS: IPin[] = [
     photo: '/images/porto.jpeg'
   }
 ]
+
+// narita -> shibuya 
+// -> harajuku -> yoyogi park -> golden gai
+// -> shinjuku -> kawaguchiko -> mt fuji
+// -> Akihabara -> ueno
+// asakusa -> ICN -> myeondong
+// hanook village -> dongdaemoon -> gwanjang market
+// gangname -> seonsudong
+// jeonju
+// hongdae
+
+
+// hawaii trip
+// lihue airport -> kapaa -> anahola -> kilauea
+// hanalei -> walmea -> koke'e state park
+// maui
+// kahului -> kihei
+// haiku -> ka'eleku -> hana -> wailua falls -> makahiku falls -> waimoku falls -> palikea
+
+// first road trip
+// Des moines -> omaha -> denver -> boulder -> moab (arches, bryce, horseshoe bend)
+// mesquite -> las vegas
+
+// Second road trip
+// des moines -> badlands -> sioux falls -> yellowstone -> grand teton -> reno -> yosemite 
+// -> los angeles -> vegas 
+
+// salt lake city
+// brighton -> park city
+
+// seattle (first time)
+
+// seattle (second time)
+
+// pheonix (wedding)
+
+// south padre
+
+// forest
+
+// ann arbor
+
+// 

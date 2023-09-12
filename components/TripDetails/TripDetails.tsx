@@ -41,12 +41,16 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
         setShowMarkersList(!showMarkersList)
     };
 
+    const [selectedMarker, setSelectedMarker] = useState(null);
+
+
     // Go to specific destination on map
-    const onClickMarker = (markerCoordinates) => {
+    const onClickMarker = (markerCoordinates, markerIndex) => {
       if (screen.width <= 438) {
         setOpen(false);
       }
       mapRef.flyTo(markerCoordinates, 10)
+      setSelectedMarker(markerIndex);
     }
 
     return (
@@ -67,28 +71,28 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
                 {trip.tripName}
               </span>
             </p>
-            <p className={styles.paragraph2}>
+            <p className={styles.paragraph}>
               <span className={styles.authors}>
-                {trip.author}
+                <i className="bi bi-person-fill"></i> {trip.author}
               </span>
             </p>
-            <p className={styles.paragraph1}>
+            <p className={styles.paragraph}>
               <span className={styles.light}>
-                {trip.startDate} to {trip.endDate}
+                <i className="bi bi-clock"></i> {trip.startDate} - {trip.endDate}
               </span>
             </p>
-            <p className={styles.paragraph1}>
+            <p className={styles.paragraph}>
               <span className={styles.light}>
                 {cities} cities, {countries} countries
               </span>
             </p>
               {showMarkersList && (
-                <ol>
+                <ol className={styles.prettylist}>
                   {markers.map((marker, index) => (
                     <li 
                       key={index}
-                      onClick={() => onClickMarker(marker.coordinates)}
-                      style={{ cursor: 'pointer '}}
+                      onClick={() => onClickMarker(marker.coordinates, index)}
+                      className={styles.listitem}
                     >
                       {marker.city}, {marker.country}
                     </li>

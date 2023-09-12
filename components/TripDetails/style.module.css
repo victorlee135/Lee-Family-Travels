@@ -10,6 +10,28 @@
   
     z-index: 2;
   }
+
+  .prettylist {
+    padding: 5; /* Remove default list padding */
+    list-style-type: decimal;
+    /* Adjust the left padding to control the indentation */
+    padding-left: 20px;
+  }
+  
+  .listitem {
+    margin-bottom: 10px; /* Add spacing between list items */
+    padding: 10px; /* Add padding to list items */
+    border: 1px solid #ccc; /* Add a border around each list item */
+    border-radius: 5px; /* Round the corners of each list item */
+    background-color: #f9f9f9; /* Background color for list items */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s; /* Smooth background color transition on hover */
+    
+  }
+  
+  .listitem:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+  }
   
   .marker {
     cursor: pointer;

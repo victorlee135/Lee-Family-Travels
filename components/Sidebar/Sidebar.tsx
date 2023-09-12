@@ -13,7 +13,16 @@ export interface SideBarProps {
 }
 
   export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps) {
-  
+    const [isTrips, setTrips] = useState<boolean>(true);
+    const [isStats, setStats] = useState<boolean>(false);
+
+    const getButton = (button: string) => {
+      if (button === 'trips') {
+        return styles.button_active;
+      }
+      return styles.button;
+    }
+    
     return (
       <CSSTransition
         in={isOpen}
@@ -30,19 +39,39 @@ export interface SideBarProps {
           <div className={styles.content}>
             <div className={styles.heading}>
                 <Image
-                    src="/markers/sticker-image.svg"
+                    src="/markers/lee-family-logo-cropped.svg"
                     alt="Lee Logo"
-                    width={180}
-                    height={61}
+                    width={240}
+                    height={80}
                     style={{ cursor: 'pointer'}}
                     priority 
                 />
               <br></br>
+              <div className={styles.buttons}>
+                <div className={styles.tab}>
+                  <button
+                    className={getButton('trips')}
+                    type={'button'}
+                    role="button"
+                    onClick={() => setTrips((open) => !open)}
+                  >
+                    {' '}
+                    Trips <i className="bi bi-geo-fill"></i>{' '}
+                  </button>
+                  &nbsp;
+                  <button 
+                    className={getButton('stats')}
+                    type={'button'}
+                    role="button"
+                    onClick={() => setTrips((open) => !open)}
+                  >
+                    {' '}
+                    Statistics <i className="bi bi-award-fill"></i>{' '}
+                  </button>
+                  <br></br>
+                </div>
+              </div>
             </div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <CSSTransition
               in={trips}
               timeout={250}

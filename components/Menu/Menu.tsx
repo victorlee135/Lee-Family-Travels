@@ -1,12 +1,12 @@
 import classnames from 'classnames';
 import styles from './style.module.css';
 
-export interface Props {
+export interface MenuProps {
     isOpen: boolean;
     setOpen: (boolean) => void;
   }
 
-export default function Menu({ isOpen, setOpen }: Props) {
+export default function Menu({ isOpen, setOpen }: MenuProps) {
   return (
     <label
       className={classnames(styles.menu, { [styles.open]: isOpen })}

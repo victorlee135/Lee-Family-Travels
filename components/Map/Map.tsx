@@ -6,13 +6,6 @@ import Trip from '../Trip';
 import { ITrip } from '../../lib';
 
 
-export interface IFilter {
-  name: string;
-  type: string;
-  checked: boolean;
-}
-
-
 export const createClusterCustomIcon = function (cluster) {
   return L.divIcon({
     html: `<span>${'+' + cluster.getChildCount()}</span>`,
@@ -28,6 +21,11 @@ export const arrowIcon = L.divIcon({
   iconAnchor: [10, 10],
 });
 
+export interface IFilter {
+  name: string;
+  type: string;
+  checked: boolean;
+}
 
 
 export const DEFAULT_FILTERS: IFilter[] = [
@@ -48,14 +46,14 @@ export const DEFAULT_FILTERS: IFilter[] = [
   },
 ];
 
-export interface Props {
+export interface MapProps {
   trips: ITrip[];
   setMapRef: Function;
 }
 
 // Map -> ITrip -> IPin (have to add trip attribute)
 
-export default function Map({ trips, setMapRef }: Props) {
+export default function Map({ trips, setMapRef }: MapProps) {
   const Ref = () => {
     setMapRef(useMap());
     return null;

@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Marker as MarkerContainer, Popup } from 'react-leaflet';
+import { Marker, MarkerProps, Popup } from 'react-leaflet';
 import {
   getFullDateString,
   getRelativeTimeString,
@@ -11,59 +11,51 @@ import styles from './style.module.css';
 import { Icon } from 'leaflet';
 
 
-
-// 1. Creates the Marker image on the map 
-// 2. Links the photo to the marker
-// 3. Provides details of the photo
-
-
 export const getIcon: Icon = new Icon({
   iconUrl: `/markers/sticker.svg`,
   iconSize: [45, 45]
 })
 
-const PhotoMarker = ({
-  type,
-  coordinates,
-  city,
-  country,
-  author,
-  photo,
-  date
-}: IPin) => {
+export interface PhotoMarkerProps{
+  pin: IPin;
+  isOpen?: boolean;
+}
+
+const PhotoMarker = ({ pin }: PhotoMarkerProps) => {
   const icon = getIcon;
-  const name = useMemo(() => getNameString(author), [author]);
+  const name = useMemo(() => getNameString(pin.author), [pin.author]);
 
   return (
-    <MarkerContainer
+
+    <Marker
       icon={icon}
-      position={coordinates}
-      title={`${name} at ${city}`}
+      position={pin.coordinates}
+      title={`${name} at ${pin.city}`}
     >
       <Popup>
         <div>
           <div className={styles.text}>
             <h1>
-              {city},<br />
-              {country}
+              {pin.city},<br />
+              {pin.country}
             </h1>
-            {date && (
+            {pin.date && (
               <i>
-                {getFullDateString(date)} ({getRelativeTimeString(date)})
+                {getFullDateString(pin.date)} ({getRelativeTimeString(pin.date)})
               </i>
             )}
             <br />
             <span>{name}</span>
           </div>
           <Image
-            alt={`${name} at ${city}`}
-            src={photo}
+            alt={`${name} at ${pin.city}`}
+            src={pin.photo}
             fill
             className={styles.image}
           />
         </div>
       </Popup>
-    </MarkerContainer>
+    </Marker>
   );
 };
 

@@ -18,7 +18,6 @@ export const getIcon: Icon = new Icon({
 
 export interface PhotoMarkerProps{
   pin: IPin;
-  isOpen?: boolean;
 }
 
 const PhotoMarker = ({ pin }: PhotoMarkerProps) => {

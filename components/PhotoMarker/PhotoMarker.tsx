@@ -31,7 +31,7 @@ const PhotoMarker = ({ pin }: PhotoMarkerProps) => {
       position={pin.coordinates}
       title={`${name} at ${pin.city}`}
     >
-      <Popup>
+      <Popup closeOnClick={true}>
         <div>
           <div className={styles.text}>
             <h1>

@@ -32,6 +32,7 @@ export enum ETheme {
     startDate: string;
     endDate: string;
     markers: IPin[];
+    googlePhotos?: string;
 }
 
 function distance(lat1, lat2, lon1, lon2) {

@@ -65,6 +65,7 @@ export default function Map({ trips, setMapRef }: MapProps) {
       scrollWheelZoom={true}
       style={{ height: '100vh' }}
       zoomControl={false}
+      closePopupOnClick={true}
     >
       <Ref></Ref>
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />

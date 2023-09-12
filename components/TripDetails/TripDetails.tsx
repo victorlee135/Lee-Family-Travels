@@ -41,16 +41,13 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
         setShowMarkersList(!showMarkersList)
     };
 
-    const [selectedMarker, setSelectedMarker] = useState(null);
-
 
     // Go to specific destination on map
-    const onClickMarker = (markerCoordinates, markerIndex) => {
+    const onClickMarker = (markerCoordinates) => {
       if (screen.width <= 438) {
         setOpen(false);
       }
       mapRef.flyTo(markerCoordinates, 10)
-      setSelectedMarker(markerIndex);
     }
 
     return (
@@ -83,7 +80,12 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
             </p>
             <p className={styles.paragraph}>
               <span className={styles.light}>
-                {cities} cities, {countries} countries
+                <i className="bi bi-airplane-engines"></i> {cities} cities, {countries} countries
+              </span>
+            </p>
+            <p className={styles.paragraph}>
+              <span className={styles.authors}>
+                <i className="bi bi-google"></i> {trip.googlePhotos}
               </span>
             </p>
               {showMarkersList && (
@@ -91,7 +93,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
                   {markers.map((marker, index) => (
                     <li 
                       key={index}
-                      onClick={() => onClickMarker(marker.coordinates, index)}
+                      onClick={() => onClickMarker(marker.coordinates)}
                       className={styles.listitem}
                     >
                       {marker.city}, {marker.country}

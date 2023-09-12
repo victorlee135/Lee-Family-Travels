@@ -24,7 +24,8 @@ export const TripList: ITrip[] = [
       author: "Victor Lee",
       startDate: "July 27, 2023",
       endDate: "August 17, 2023",
-      markers: EUR_PICS
+      markers: EUR_PICS,
+      googlePhotos: "https://testEurope.com"
     },
     {
       id: "2",
@@ -32,6 +33,7 @@ export const TripList: ITrip[] = [
       author: "Victor Lee",
       startDate: "August 18, 2023",
       endDate: "August 23, 2023",
-      markers: BANFF_PICS
+      markers: BANFF_PICS,
+      googlePhotos: "https://testBanff.com"
     }
 ]

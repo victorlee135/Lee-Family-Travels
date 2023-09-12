@@ -12,6 +12,12 @@ export interface SideBarProps {
     mapRef: undefined;
 }
 
+export enum EFilterKeys {
+  Victor = 'Victor',
+  Year = 'Year',
+
+}
+
   export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps) {
     const [isTrips, setTrips] = useState<boolean>(true);
     const [isStats, setStats] = useState<boolean>(false);
@@ -21,6 +27,13 @@ export interface SideBarProps {
         return styles.button_active;
       }
       return styles.button;
+    }
+
+    const getName = (name: string) => {
+      if (name === 'All') {
+        return styles.name_active;
+      }
+      return styles.name;
     }
     
     return (
@@ -46,6 +59,7 @@ export interface SideBarProps {
                     style={{ cursor: 'pointer'}}
                     priority 
                 />
+              <br></br>
               <br></br>
               <div className={styles.buttons}>
                 <div className={styles.tab}>
@@ -84,6 +98,79 @@ export interface SideBarProps {
               unmountOnExit
             >
               <div>
+                <div className={styles.sort}>
+                  <div className={styles.text}>
+                    <label>
+                      <b>Name: </b>
+                    </label>
+                    &nbsp;
+                    <button
+                        className={getName('All')}
+                        type={'button'}
+                        role="button"
+                        onClick={() => setTrips((open) => !open)}
+                      >
+                        {' '}
+                        All
+                        {' '}
+                    </button>
+                    &nbsp;
+                    <button
+                        className={getName('Victor')}
+                        type={'button'}
+                        role="button"
+                        onClick={() => setTrips((open) => !open)}
+                      >
+                        {' '}
+                        Victor
+                        {' '}
+                    </button>
+                    &nbsp;
+                    <button
+                        className={getName('Phil')}
+                        type={'button'}
+                        role="button"
+                        onClick={() => setTrips((open) => !open)}
+                      >
+                        {' '}
+                        Phil
+                        {' '}
+                    </button>
+                    &nbsp;
+                    <button
+                        className={getName('Bumo')}
+                        type={'button'}
+                        role="button"
+                        onClick={() => setTrips((open) => !open)}
+                      >
+                        {' '}
+                        Bumo
+                        {' '}
+                    </button>
+                  </div>
+                  <br></br>
+                  <div className={styles.text}>
+                    <label>
+                      <b>Year Range: </b>
+                    </label>
+                    &nbsp;
+                    <input 
+                      type="text" 
+                      placeholder="1998" 
+                      value="" 
+                      style={{ width: '13%' }} 
+                    />
+                    &nbsp;   
+                    to
+                    &nbsp;   
+                    <input 
+                      type="text" 
+                      placeholder="2023" 
+                      value="" 
+                      style={{ width: '13%' }} 
+                    />
+                  </div>
+                </div>
                 {trips.map((trip: ITrip) => (
                   <TripDetails
                     key={trip.id}

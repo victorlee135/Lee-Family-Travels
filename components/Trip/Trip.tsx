@@ -30,9 +30,13 @@ export default function Trip({ markers }: { markers: IPin[] }) {
             {coordinates.length > 1 && (
                 <Polyline 
                     positions={coordinates} 
-                    color="black" 
+                    color="royalblue" /* Change the color to royal blue */
+                    weight={3} /* Increase the line weight */
+                    fillOpacity={0.6} /* Add some transparency */
                     pathOptions={{
-                        dashArray: '4, 4',
+                        dashArray: '10, 5', /* Adjust the dashArray for a dotted line effect */
+                        lineCap: 'round', /* Rounded line ends */
+                        lineJoin: 'round', /* Rounded line joints */
                     }}
                 />
             )}

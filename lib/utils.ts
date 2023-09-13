@@ -12,6 +12,7 @@ export type GlobalTheme = {
 };
 
 export enum Lee {
+  All = 'All',
   Victor = 'Victor',
   Phil = 'Phil',
   Bumo = 'Bumo'

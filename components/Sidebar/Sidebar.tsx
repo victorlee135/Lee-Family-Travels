@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { IPin, ITrip, changeVariables } from '~/lib/utils';
+import { Filters, IPin, ITrip, Lee, changeVariables } from '~/lib/utils';
 import styles from './style.module.css';
 import { CSSTransition } from 'react-transition-group';
 import TripDetails from '../TripDetails/TripDetails';
@@ -14,13 +14,19 @@ export interface SideBarProps {
 }
 
 export enum EFilterKeys {
+  All = 'All',
   Victor = 'Victor',
   Year = 'Year',
+}
+
+export interface Filter {
+  users: Lee[];
 }
 
 export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps) {
   const [isTrips, setTrips] = useState<boolean>(true);
   const [isStats, setStats] = useState<boolean>(false);
+  const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
 
   const getButton = (button: string) => {
     if (button === 'trips') {
@@ -35,15 +41,59 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps
       }
       return styles.button;
     }
-    
   }
 
-  const getName = (name: string) => {
-    if (name === 'All') {
-      return styles.name_active;
+  const getLeeButton = (type: Lee) => {
+    if (type === 'All') {
+      if (filterKey.users.includes(Lee.All)) {
+        return styles.button_active;
+      }
+      return styles.button;
+    } else {
+      if (filterKey.users.includes(type)) {
+        return styles.button_active;
+      }
+      return styles.button;
     }
-    return styles.name;
   }
+  
+
+  function filter(trips, filterKey) {
+    return trips.filter((trip) => {
+      if (filterKey.users.length === 0 ) {
+        return true;
+      }
+
+      if (filterKey.users.includes('All')) {
+        return true;
+      }
+
+      if (filterKey.users.some((user) => trip.lee.includes(user))) {
+        return true;
+      }
+
+      return false;
+    });
+  }
+
+  const onClick = (type) => {
+    const updatedUsers = filterKey.users.filter((user) => user !== Lee.All);
+  
+    if (type === 'All') {
+      setFilterKey({ users: [Lee.All] });
+    } else {
+      const userExists = updatedUsers.includes(type);
+      if (userExists) {
+        if (updatedUsers.length === 1) {
+          setFilterKey({ users: [Lee.All] });
+        } else {
+          setFilterKey({ users: updatedUsers.filter((user) => user !== type) });
+        }
+      } else {
+        setFilterKey({ users: [...updatedUsers, type] });
+      }
+    }
+  };
   
   return (
     <CSSTransition
@@ -117,74 +167,40 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps
                     <b>Lee: </b>
                   </label>
                   &nbsp;
-                  <button
-                      className={getName('All')}
-                      type={'button'}
-                      role="button"
-                      onClick={() => setTrips((open) => !open)}
-                    >
-                      {' '}
-                      All
-                      {' '}
+                  <button className={getLeeButton(Lee.All)} type={'button'} role="button"
+                      onClick={() => onClick(Lee.All)} >
+                      {' '}All{' '}
                   </button>
                   &nbsp;
-                  <button
-                      className={getName('Victor')}
-                      type={'button'}
-                      role="button"
-                      onClick={() => setTrips((open) => !open)}
-                    >
-                      {' '}
-                      Victor
-                      {' '}
+                  <button className={getLeeButton(Lee.Victor)} type={'button'} role="button"
+                      onClick={() => onClick(Lee.Victor)} >
+                      {' '}Victor{' '}
                   </button>
                   &nbsp;
-                  <button
-                      className={getName('Phil')}
-                      type={'button'}
-                      role="button"
-                      onClick={() => setTrips((open) => !open)}
-                    >
-                      {' '}
-                      Phil
-                      {' '}
+                  <button className={getLeeButton(Lee.Phil)} type={'button'} role="button"
+                      onClick={() => onClick(Lee.Phil)} >
+                      {' '}Phil{' '}
                   </button>
                   &nbsp;
-                  <button
-                      className={getName('Bumo')}
-                      type={'button'}
-                      role="button"
-                      onClick={() => setTrips((open) => !open)}
-                    >
-                      {' '}
-                      Bumo
-                      {' '}
+                  <button className={getLeeButton(Lee.Bumo)} type={'button'} role="button"
+                      onClick={() => onClick(Lee.Bumo)} >
+                      {' '}Bumo{' '}
                   </button>
                 </div>
                 <br></br>
                 <div className={styles.text}>
-                  <label>
-                    <b>Year Range: </b>
-                  </label>
-                  &nbsp;
-                  <input 
-                    type="text" 
-                    placeholder="1998" 
-                    value="" 
-                    style={{ width: '13%' }} 
-                  />
-                  &nbsp;   
+                  <label> <b>Year Range: </b> </label>
+                  &nbsp;&nbsp;&nbsp;
+                  <input type="text" placeholder="1998" value="" 
+                    style={{ width: '13%', textAlign: 'center' }} />
+                  &nbsp;&nbsp;&nbsp;
                   to
-                  &nbsp;   
-                  <input 
-                    type="text" 
-                    placeholder="2023" 
-                    value="" 
-                    style={{ width: '13%' }} 
-                  />
+                  &nbsp;&nbsp;&nbsp;
+                  <input type="text" placeholder="2023" value="" 
+                    style={{ width: '13%', textAlign: 'center' }} />
                 </div>
               </div>
-              {trips.map((trip: ITrip) => (
+              {filter(trips, filterKey).map((trip: ITrip) => (
                 <TripDetails
                   key={trip.id}
                   isOpen="false"

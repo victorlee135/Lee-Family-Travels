@@ -6,33 +6,44 @@ export enum ETheme {
     Dark = 'dark'
   }
   
-  export type GlobalTheme = {
-    theme: ETheme;
-    changeTheme: (theme: ETheme) => void;
-  };
+export type GlobalTheme = {
+  theme: ETheme;
+  changeTheme: (theme: ETheme) => void;
+};
 
-  
-  // Marker on the map
-  export interface IPin {
-    author: string | string[];
-    city: string;
-    country: string;
-    coordinates: [number, number];
-    date: string;
-    photo: string;
-    type: string | string[];
-    streetview?: string;
-    isOpen?: boolean;
-  }
+export enum Lee {
+  Victor = 'Victor',
+  Phil = 'Phil',
+  Bumo = 'Bumo'
+}
 
-  export interface ITrip {
-    id: string;
-    tripName: string;
-    author: string | string[];
-    startDate: string;
-    endDate: string;
-    markers: IPin[];
-    googlePhotos?: string;
+// Marker on the map
+export interface IPin {
+  author: string | string[];
+  city: string;
+  country: string;
+  coordinates: [number, number];
+  date: string;
+  photo: string;
+  lee: Lee[];
+  streetview?: string;
+  isOpen?: boolean;
+}
+
+export interface ITrip {
+  id: string;
+  tripName: string;
+  author: string;
+  lee: Lee[];
+  startDate: string;
+  endDate: string;
+  markers: IPin[];
+  googlePhotos?: string;
+}
+
+export interface Filters {
+  lee: Lee[];
+  dateRange: [number, number];
 }
 
 function distance(lat1, lat2, lon1, lon2) {
@@ -60,40 +71,52 @@ export function getDistance(coordinates: IPin['coordinates']) {
   const x1 = coordinates[0];
   const y1 = coordinates[1];
 
-  return distance(x0, x1, y0, y1);
+  return distance(x0, x1, y0, y1) / 1.609;
 }
 
-  export const getFullDateString = (date: string) => {
-    return new Date(date).toLocaleDateString(undefined, {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-  
-  export const getRelativeTimeString = (date: string) => {
-    return DateTime.fromISO(date)
-      .toRelative(DateTime.now())
-      .toLocaleString();
-  };
-  
-  export const getNameString = (authors: string[] | string) => {
-    if (!Array.isArray(authors)) {
-      return authors;
-    }
-  
-    const size = authors.length;
-  
-    if (size <= 1) {
-      return authors.join();
-    }
-  
-    return authors.slice(0, size - 1).join(', ') + ' and ' + authors[size - 1];
-  };
+export const getFullDateString = (date: string) => {
+  return new Date(date).toLocaleDateString(undefined, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
 
-  export const sortByOldest = (a: IPin, b: IPin) => {
-    return (
-      DateTime.fromISO(a.date).toMillis() - DateTime.fromISO(b.date).toMillis()
-    );
-  };
+export const getRelativeTimeString = (date: string) => {
+  return DateTime.fromISO(date)
+    .toRelative(DateTime.now())
+    .toLocaleString();
+};
+
+export const getNameString = (authors: string[] | string) => {
+  if (!Array.isArray(authors)) {
+    return authors;
+  }
+
+  const size = authors.length;
+
+  if (size <= 1) {
+    return authors.join();
+  }
+
+  return authors.slice(0, size - 1).join(', ') + ' and ' + authors[size - 1];
+};
+
+export const sortByOldest = (a: IPin, b: IPin) => {
+  return (
+    DateTime.fromISO(a.date).toMillis() - DateTime.fromISO(b.date).toMillis()
+  );
+};
+
+export function changeVariables(view: boolean, 
+  setTrips: (boolean) => void, setStatistics: (boolean) => void) {
+
+    if (view) {
+      setStatistics(false)
+      setTimeout(() => setTrips(true), 250);
+    } else{
+      setTrips(false);
+      setTimeout(() => setStatistics(true), 250);
+    }
+  }

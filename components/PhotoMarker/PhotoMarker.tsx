@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { Marker, MarkerProps, Popup } from 'react-leaflet';
 import {

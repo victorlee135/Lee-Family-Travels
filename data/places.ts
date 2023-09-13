@@ -1,9 +1,9 @@
-import { IPin } from '../lib';
+import { IPin, Lee } from '../lib';
 
 export const EUR_PICS: IPin[] = [
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Nice',
       country: 'France',
       coordinates: [43.7102, 7.2620],
@@ -12,7 +12,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Frejus',
       country: 'France',
       coordinates: [43.4332, 6.7370],
@@ -21,7 +21,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Moustiers-Sainte-Marie',
       country: 'France',
       coordinates: [43.8457, 6.2215],
@@ -30,7 +30,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Montpellier',
       country: 'France',
       coordinates: [43.6108, 3.8767],
@@ -39,7 +39,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Ibiza',
       country: 'Spain',
       coordinates: [38.9067, 1.4206],
@@ -48,7 +48,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Barcelona',
       country: 'Spain',
       coordinates: [41.5888, 1.8422],
@@ -57,7 +57,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Porto',
       country: 'Portugal',
       coordinates: [41.1579, -8.6291],
@@ -66,7 +66,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Lisbon',
       country: 'Portugal',
       coordinates: [38.7223, -9.1393],
@@ -75,7 +75,7 @@ export const EUR_PICS: IPin[] = [
     },
     {
       author: 'Victor Lee',
-      type: 'victor',
+      lee: [Lee.Victor],
       city: 'Sintra',
       country: 'Portugal',
       coordinates: [38.7804, -9.4991],
@@ -88,7 +88,7 @@ export const EUR_PICS: IPin[] = [
 export const BANFF_PICS: IPin[] = [
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Calgary',
     country: 'Canada',
     coordinates: [51.0447, -114.0719],
@@ -97,7 +97,7 @@ export const BANFF_PICS: IPin[] = [
   },
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Canmore',
     country: 'Canada',
     coordinates: [51.0884, -115.3479],
@@ -106,7 +106,7 @@ export const BANFF_PICS: IPin[] = [
   },
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Banff',
     country: 'Canada',
     coordinates: [51.1784, -115.5708],
@@ -115,7 +115,7 @@ export const BANFF_PICS: IPin[] = [
   },
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Lake Louise',
     country: 'Canada',
     coordinates: [51.4254, -116.1773],
@@ -124,7 +124,7 @@ export const BANFF_PICS: IPin[] = [
   },
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Lake Moraine',
     country: 'Canada',
     coordinates: [51.3217, -116.1860],
@@ -133,7 +133,7 @@ export const BANFF_PICS: IPin[] = [
   },
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Peyto Lake',
     country: 'Canada',
     coordinates: [51.7255, -116.5227],
@@ -142,7 +142,7 @@ export const BANFF_PICS: IPin[] = [
   },
   {
     author: 'Victor Lee',
-    type: 'victor',
+    lee: [Lee.Victor],
     city: 'Eureka',
     country: 'USA',
     coordinates: [48.8800, -115.0535],

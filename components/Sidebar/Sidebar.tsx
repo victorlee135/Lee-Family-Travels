@@ -68,7 +68,9 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps
         return true;
       }
 
-      if (filterKey.users.some((user) => trip.lee.includes(user))) {
+      const allUsersMatch = filterKey.users.every((user) => trip.lee.includes(user));
+
+      if (allUsersMatch) {
         return true;
       }
 

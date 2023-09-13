@@ -151,6 +151,189 @@ export const BANFF_PICS: IPin[] = [
   }
 ]
 
+export const ASIA_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Narita',
+    country: 'Japan',
+    coordinates: [35.7719, 140.3925],
+    date: '2023-08-18',
+    photo: '/images/nice.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Shibuya',
+    country: 'Japan',
+    coordinates: [35.6595, 139.7005],
+    date: '2023-08-18',
+    photo: '/images/frejus.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Harajuku',
+    country: 'Japan',
+    coordinates: [35.6718, 139.7035],
+    date: '2023-08-18',
+    photo: '/images/mountain.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Yoyogi Park',
+    country: 'Japan',
+    coordinates: [35.6712, 139.6945],
+    date: '2023-08-19',
+    photo: '/images/montpellier.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Golden Gai',
+    country: 'Japan',
+    coordinates: [35.6918, 139.7041],
+    date: '2023-08-19',
+    photo: '/images/ibiza.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Shinjuku',
+    country: 'Japan',
+    coordinates: [35.6895, 139.6917],
+    date: '2023-08-19',
+    photo: '/images/barcelona.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Kawaguchiko',
+    country: 'Japan',
+    coordinates: [35.5022, 138.7654],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Mt. Fuji',
+    country: 'Japan',
+    coordinates: [35.3606, 138.7274],
+    date: '2023-08-19',
+    photo: '/images/ibiza.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Akihabara',
+    country: 'Japan',
+    coordinates: [35.6995, 139.7710],
+    date: '2023-08-19',
+    photo: '/images/barcelona.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Ueno',
+    country: 'Japan',
+    coordinates: [35.7127, 139.7730],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Asakusa',
+    country: 'Japan',
+    coordinates: [35.7142, 139.7967],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Incheon',
+    country: 'South Korea',
+    coordinates: [37.4645, 126.4327],
+    date: '2023-08-18',
+    photo: '/images/mountain.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Myeondong',
+    country: 'South Korea',
+    coordinates: [37.5662, 126.9829],
+    date: '2023-08-19',
+    photo: '/images/montpellier.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Hanook Village',
+    country: 'South Korea',
+    coordinates: [37.5573, 127.0405],
+    date: '2023-08-19',
+    photo: '/images/ibiza.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Dongdaemon',
+    country: 'South Korea',
+    coordinates: [37.5663, 127.0094],
+    date: '2023-08-19',
+    photo: '/images/barcelona.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Gwanjang Market',
+    country: 'South Korea',
+    coordinates: [37.5683, 127.0049],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Gangnam',
+    country: 'South Korea',
+    coordinates: [37.5172, 127.0473],
+    date: '2023-08-19',
+    photo: '/images/ibiza.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Seonsudong',
+    country: 'South Korea',
+    coordinates: [37.5150, 126.9919],
+    date: '2023-08-19',
+    photo: '/images/barcelona.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Jeonju',
+    country: 'South Korea',
+    coordinates: [35.8242, 127.1489],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Hongdae',
+    country: 'South Korea',
+    coordinates: [37.5562, 126.9267],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+]
+
 // narita -> shibuya 
 // -> harajuku -> yoyogi park -> golden gai
 // -> shinjuku -> kawaguchiko -> mt fuji

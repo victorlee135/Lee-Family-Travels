@@ -1,5 +1,5 @@
 import { ITrip, Lee } from "../lib";
-import { EUR_PICS, BANFF_PICS } from "./places";
+import { EUR_PICS, BANFF_PICS, ASIA_PICS } from "./places";
 
 // Trips to add
 // senior spring break
@@ -32,10 +32,50 @@ export const TripList: ITrip[] = [
       id: "2",
       tripName: "Banff 2023",
       author: "Victor Lee",
-      lee: [Lee.Victor],
+      lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
       startDate: "August 18, 2023",
       endDate: "August 23, 2023",
       markers: BANFF_PICS,
       googlePhotos: "https://testBanff.com"
+    },
+    // {
+    //   id: "3",
+    //   tripName: "National Park Road Trip",
+    //   author: "Victor Lee",
+    //   lee: [Lee.Victor],
+    //   startDate: "May 20, 2019",
+    //   endDate: "June 4, 2019",
+    //   markers: BANFF_PICS,
+    //   googlePhotos: "https://testRoadTrip.com"
+    // },
+    // {
+    //   id: "4",
+    //   tripName: "Covid Road Trip",
+    //   author: "Victor Lee",
+    //   lee: [Lee.Victor],
+    //   startDate: "June 20, 2020",
+    //   endDate: "July 3, 2020",
+    //   markers: BANFF_PICS,
+    //   googlePhotos: "https://testCovidRoadTrip.com"
+    // },
+    // {
+    //   id: "5",
+    //   tripName: "Hawaii",
+    //   author: "Victor Lee",
+    //   lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    //   startDate: "Aug 2, 2022",
+    //   endDate: "August 14, 2022",
+    //   markers: BANFF_PICS,
+    //   googlePhotos: "https://testHawaii.com"
+    // },
+    {
+      id: "3",
+      tripName: "Asia 2022/2023",
+      author: "Victor Lee",
+      lee: [Lee.Victor, Lee.Phil],
+      startDate: "December 24, 2022",
+      endDate: "January 4, 2023",
+      markers: ASIA_PICS,
+      googlePhotos: "https://testAsia.com"
     }
 ]

@@ -15,7 +15,7 @@ import styles from './style.module.css';
 // 2. arrows to go to next destination
 
 export const getIcon: Icon = new Icon({
-    iconUrl: `/markers/greenmarker.svg`,
+    iconUrl: `/markers/sticker.svg`,
     iconSize: [30, 30]
   })
 
@@ -26,29 +26,21 @@ const Trip = ({markers, mapRef}) => {
 
 
     const goToNextMarker = (index) => {
-        console.log("Clicked Next Marker");
-        const temp = index;
-        if (index === markers.length - 1) {
-            index = 0
-        } else {
-            index = temp + 1
-        }
-
-        console.log("Old index: %d, New index: %d", temp, index);
-        mapRef.flyTo(coordinates[index])
-      };
+        const newIndex = (index + 1) % markers.length;
+        flyToMarker(newIndex);
+    };
     
     const goToPreviousMarker = (index) => {
-        console.log("Clicked Prev Marker");
-        const temp = index;
-        if (index === 0) {
-            index = markers.length - 1;
-        } else {
-            index = index - 1
-        }
-        console.log("Old index: %d, New index: %d", temp, index);
-        mapRef.flyTo(coordinates[index])
-
+        const newIndex = (index - 1 + markers.length) % markers.length;
+        flyToMarker(newIndex);
+    };
+    
+    const flyToMarker = (index) => {
+        mapRef.flyTo(coordinates[index], 11, {
+            animate: true,
+            duration: 1.25
+        });
+        mapRef.closePopup();
     };
 
     return (

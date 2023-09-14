@@ -1,32 +1,28 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { Filters, IPin, ITrip, Lee, changeVariables } from '~/lib/utils';
+import { Filters, IPin, ITrip, Lee, changeVariables, filter } from '~/lib/utils';
 import styles from './style.module.css';
 import { CSSTransition } from 'react-transition-group';
 import TripDetails from '../TripDetails/TripDetails';
 import Stats from '../Stats';
+
 
 export interface SideBarProps {
     trips: ITrip[];
     isOpen: boolean;
     setOpen: Function;
     mapRef: undefined;
-}
-
-export enum EFilterKeys {
-  All = 'All',
-  Victor = 'Victor',
-  Year = 'Year',
+    filterKey: Filter;
+    setFilterKey: Function;
 }
 
 export interface Filter {
   users: Lee[];
 }
 
-export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps) {
+export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, setFilterKey }: SideBarProps) {
   const [isTrips, setTrips] = useState<boolean>(true);
   const [isStats, setStats] = useState<boolean>(false);
-  const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
 
   const getButton = (button: string) => {
     if (button === 'trips') {
@@ -57,26 +53,6 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef }: SideBarProps
     }
   }
   
-
-  function filter(trips, filterKey) {
-    return trips.filter((trip) => {
-      if (filterKey.users.length === 0 ) {
-        return true;
-      }
-
-      if (filterKey.users.includes('All')) {
-        return true;
-      }
-
-      const allUsersMatch = filterKey.users.every((user) => trip.lee.includes(user));
-
-      if (allUsersMatch) {
-        return true;
-      }
-
-      return false;
-    });
-  }
 
   const onClick = (type) => {
     const updatedUsers = filterKey.users.filter((user) => user !== Lee.All);

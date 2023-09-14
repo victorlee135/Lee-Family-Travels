@@ -121,3 +121,23 @@ export function changeVariables(view: boolean,
       setTimeout(() => setStatistics(true), 250);
     }
   }
+
+export function filter(trips, filterKey) {
+  return trips.filter((trip) => {
+    if (filterKey.users.length === 0 ) {
+      return true;
+    }
+
+    if (filterKey.users.includes('All')) {
+      return true;
+    }
+
+    const allUsersMatch = filterKey.users.every((user) => trip.lee.includes(user));
+
+    if (allUsersMatch) {
+      return true;
+    }
+
+    return false;
+  });
+}

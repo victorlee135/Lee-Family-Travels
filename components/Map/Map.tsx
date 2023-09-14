@@ -3,7 +3,8 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 import Trip from '../Trip';
-import { ITrip } from '../../lib';
+import { ITrip, Lee, filter } from '../../lib';
+import { Filter } from '../Sidebar/Sidebar';
 
 
 export const createClusterCustomIcon = function (cluster) {
@@ -49,11 +50,10 @@ export const DEFAULT_FILTERS: IFilter[] = [
 export interface MapProps {
   trips: ITrip[];
   setMapRef: Function;
+  filterKey: Filter;
 }
 
-// Map -> ITrip -> IPin (have to add trip attribute)
-
-export default function Map({ trips, setMapRef }: MapProps) {
+export default function Map({ trips, setMapRef, filterKey }: MapProps) {
   const Ref = () => {
     setMapRef(useMap());
     return null;
@@ -69,7 +69,7 @@ export default function Map({ trips, setMapRef }: MapProps) {
     >
       <Ref></Ref>
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-      {trips.map((trip: ITrip) => (
+      {filter(trips, filterKey).map((trip: ITrip) => (
           <Trip key={trip.id} markers={trip.markers} />
         ))}
     </MapContainer>

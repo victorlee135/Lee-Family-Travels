@@ -43,7 +43,7 @@ export default function Home() {
       />
       <div className="map">
         <ThemeProvider>
-          <Map setMapRef={setMapRef} trips={TripList} filterKey={filterKey} />
+          <Map mapRef={mapRef} setMapRef={setMapRef} trips={TripList} filterKey={filterKey} />
         </ThemeProvider>
       </div>
     </div>

@@ -49,11 +49,12 @@ export const DEFAULT_FILTERS: IFilter[] = [
 
 export interface MapProps {
   trips: ITrip[];
+  mapRef: undefined;
   setMapRef: Function;
   filterKey: Filter;
 }
 
-export default function Map({ trips, setMapRef, filterKey }: MapProps) {
+export default function Map({ trips, mapRef, setMapRef, filterKey }: MapProps) {
   const Ref = () => {
     setMapRef(useMap());
     return null;
@@ -70,7 +71,7 @@ export default function Map({ trips, setMapRef, filterKey }: MapProps) {
       <Ref></Ref>
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
       {filter(trips, filterKey).map((trip: ITrip) => (
-          <Trip key={trip.id} markers={trip.markers} />
+          <Trip key={trip.id} markers={trip.markers} mapRef={mapRef} />
         ))}
     </MapContainer>
   )

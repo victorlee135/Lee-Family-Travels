@@ -13,8 +13,9 @@ import { useState } from 'react';
 // 1. details of trip (countries, date duration)
 // 2. arrows to go to next destination
 
-export default function Trip({ markers }: { markers: IPin[] }) {
+const Trip = ({markers, mapRef}) => {
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
+    const [currentMarkerIndex, setCurrentMarkerIndex] = useState(0);
     
     return (
         <>
@@ -42,4 +43,6 @@ export default function Trip({ markers }: { markers: IPin[] }) {
             )}
         </>
     );
-  };
+};
+
+export default Trip;

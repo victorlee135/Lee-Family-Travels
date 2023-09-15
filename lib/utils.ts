@@ -152,3 +152,21 @@ export function changeVariables(view: boolean,
     });
     return Array.from(countriesSet);
   }
+
+  export function getRandomColor(): string {
+    const randomRed = Math.floor(Math.random() * 256); // Random value between 0 and 255
+    const randomGreen = Math.floor(Math.random() * 256);
+    const randomBlue = Math.floor(Math.random() * 256);
+    
+    const color = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+    return color;
+  }
+
+  export function getNames(names) {
+    const size = names.length;
+
+    if (size <= 1) {
+      return names.join();
+    }
+    return names.slice(0, size - 1).join(', ') + ' and ' + names[size - 1];
+  }

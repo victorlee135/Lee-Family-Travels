@@ -358,16 +358,6 @@ export const ROADTRIP_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
-    city: 'Badlands National Park',
-    state: 'Iowa',
-    country: 'United States of America',
-    coordinates: [43.8554, -102.3397],
-    date: '2023-08-20',
-    photo: '/images/porto.jpeg'
-  },
-  {
-    author: 'Victor Lee',
-    lee: [Lee.Victor],
     city: 'Denver',
     state: 'Colorado',
     country: 'United States of America',
@@ -491,6 +481,16 @@ export const COVIDROAD_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
+    city: 'Sioux Falls',
+    state: 'South Dakota',
+    country: 'United States of America',
+    coordinates: [43.5446, -96.7311],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
     city: 'Badlands National Park',
     state: 'Iowa',
     country: 'United States of America',
@@ -501,40 +501,20 @@ export const COVIDROAD_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
-    city: 'Sioux Falls',
-    state: 'South Dakota',
-    country: 'United States of America',
-    coordinates: [39.7392, -104.9903],
-    date: '2023-08-20',
-    photo: '/images/porto.jpeg'
-  },
-  {
-    author: 'Victor Lee',
-    lee: [Lee.Victor],
-    city: 'Denver',
-    state: 'Colorado',
-    country: 'United States of America',
-    coordinates: [40.0150, -105.2705],
-    date: '2023-08-20',
-    photo: '/images/porto.jpeg'
-  },
-  {
-    author: 'Victor Lee',
-    lee: [Lee.Victor],
     city: 'Yellowstone National Park',
     state: 'Wyoming',
     country: 'United States of America',
-    coordinates: [38.7331, -109.5925],
+    coordinates: [44.4279, -110.5885],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
-    city: 'Grand Teton National Park',
+    city: 'Grand Tetons National Park',
     state: 'Wyoming',
     country: 'United States of America',
-    coordinates: [35.8242, 127.1489],
+    coordinates: [43.7904, -110.6818],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -542,9 +522,9 @@ export const COVIDROAD_PICS: IPin[] = [
     author: 'Victor Lee',
     lee: [Lee.Victor],
     city: 'Reno',
-    state: 'Nevada',
+    state: 'California',
     country: 'United States of America',
-    coordinates: [35.8242, 127.1489],
+    coordinates: [39.5296, -119.8138],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -554,7 +534,7 @@ export const COVIDROAD_PICS: IPin[] = [
     city: 'Yosemite National Park',
     state: 'California',
     country: 'United States of America',
-    coordinates: [35.8242, 127.1489],
+    coordinates: [37.8651, -119.5383],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -564,7 +544,7 @@ export const COVIDROAD_PICS: IPin[] = [
     city: 'Los Angeles',
     state: 'California',
     country: 'United States of America',
-    coordinates: [35.8242, 127.1489],
+    coordinates: [34.0597, -118.3009],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -574,7 +554,7 @@ export const COVIDROAD_PICS: IPin[] = [
     city: 'Las Vegas',
     state: 'Nevada',
     country: 'United States of America',
-    coordinates: [35.8242, 127.1489],
+    coordinates: [36.1212, -115.1697],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   }

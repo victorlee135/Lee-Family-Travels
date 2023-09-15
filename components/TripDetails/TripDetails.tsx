@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import Image from 'next/image';
-import { ITrip, getNameString } from "~/lib/utils";
+import { ITrip, getNameString, getNames } from "~/lib/utils";
 import styles from './style.module.css';
 
 export interface Props {
@@ -15,7 +15,7 @@ export interface Props {
 // 3. clicking destination within trip will go to that marker on map
 
 const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
-    const name = useMemo(() => getNameString(trip.author), [trip.author]);
+    const name = getNames(trip.lee);
     const markers = trip.markers;
 
     const citySet = new Set();
@@ -54,11 +54,11 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
         <div className={styles.listings}>
           <div className={styles.marker} onClick={onClickTrip}>
             <Image
-              src={`/markers/bluemarker.svg`}
+              src={`/markers/victorIcon.jpeg`}
               alt="Marker"
               title="Go to pin"
-              width={70}
-              height={70}
+              width={65}
+              height={63}
               objectFit="cover"
             />
           </div>
@@ -70,7 +70,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
             </p>
             <p className={styles.paragraph}>
               <span className={styles.authors}>
-                <i className="bi bi-person-fill"></i> {trip.author}
+                <i className="bi bi-people-fill"></i> {name}
               </span>
             </p>
             <p className={styles.paragraph}>

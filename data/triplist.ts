@@ -1,5 +1,5 @@
 import { ITrip, Lee } from "../lib";
-import { EUR_PICS, BANFF_PICS, ASIA_PICS, ROADTRIP_PICS } from "./places";
+import { EUR_PICS, BANFF_PICS, ASIA_PICS, ROADTRIP_PICS, COVIDROAD_PICS } from "./places";
 
 // Trips to add
 // senior spring break
@@ -24,7 +24,7 @@ export const TripList: ITrip[] = [
       author: "Victor Lee",
       lee: [Lee.Victor],
       startDate: "July 27, 2023",
-      endDate: "August 17, 2023",
+      endDate: "Aug 17, 2023",
       markers: EUR_PICS,
       googlePhotos: "https://testEurope.com"
     },
@@ -33,8 +33,8 @@ export const TripList: ITrip[] = [
       tripName: "Banff 2023",
       author: "Victor Lee",
       lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
-      startDate: "August 18, 2023",
-      endDate: "August 23, 2023",
+      startDate: "Aug 18, 2023",
+      endDate: "Aug 23, 2023",
       markers: BANFF_PICS,
       googlePhotos: "https://testBanff.com"
     },
@@ -48,6 +48,16 @@ export const TripList: ITrip[] = [
       markers: ROADTRIP_PICS,
       googlePhotos: "https://testRoadTrip.com"
     },
+    {
+      id: "4",
+      tripName: "COVID Road Trip",
+      author: "Victor Lee",
+      lee: [Lee.Victor],
+      startDate: "June 20, 2020",
+      endDate: "July 4, 2020",
+      markers: COVIDROAD_PICS,
+      googlePhotos: "https://testRoadTrip.com"
+    },
     // {
     //   id: "5",
     //   tripName: "Hawaii",
@@ -59,12 +69,12 @@ export const TripList: ITrip[] = [
     //   googlePhotos: "https://testHawaii.com"
     // },
     {
-      id: "4",
+      id: "5",
       tripName: "Asia 2022/2023",
       author: "Victor Lee",
       lee: [Lee.Victor, Lee.Phil],
-      startDate: "December 24, 2022",
-      endDate: "January 4, 2023",
+      startDate: "Dec 24, 2022",
+      endDate: "Jan 4, 2023",
       markers: ASIA_PICS,
       googlePhotos: "https://testAsia.com"
     }

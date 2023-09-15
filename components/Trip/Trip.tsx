@@ -3,7 +3,7 @@
 // Communicates with the Map Component to display trip-specific markers and arrows.
 import { Icon, LatLngExpression } from 'leaflet';
 import { Marker, Polyline, Popup } from 'react-leaflet';
-import { IPin, getFullDateString, getNameString, getRelativeTimeString } from '../../lib';
+import { IPin, getFullDateString, getNameString, getRandomColor, getRelativeTimeString } from '../../lib';
 import PhotoMarker from '../PhotoMarker';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -38,7 +38,7 @@ const Trip = ({markers, mapRef}) => {
     };
     
     const flyToMarker = (index) => {
-        mapRef.flyTo(coordinates[index], 11, {
+        mapRef.flyTo(coordinates[index], 10, {
             animate: true,
             duration: 1.25
         });
@@ -101,8 +101,8 @@ const Trip = ({markers, mapRef}) => {
             {coordinates.length > 1 && (
                 <Polyline 
                     positions={coordinates} 
-                    color="royalblue" /* Change the color to royal blue */
-                    weight={1} /* Increase the line weight */
+                    color={getRandomColor()} /* Change the color to royal blue */
+                    weight={1.5} /* Increase the line weight */
                     fillOpacity={5} /* Add some transparency */
                     pathOptions={{
                         lineCap: 'round', /* Rounded line ends */

@@ -144,7 +144,7 @@ export const BANFF_PICS: IPin[] = [
     author: 'Victor Lee',
     lee: [Lee.Victor],
     city: 'Eureka',
-    country: 'USA',
+    country: 'United States of America',
     coordinates: [48.8800, -115.0535],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
@@ -334,16 +334,251 @@ export const ASIA_PICS: IPin[] = [
   }
 ]
 
-// narita -> shibuya 
-// -> harajuku -> yoyogi park -> golden gai
-// -> shinjuku -> kawaguchiko -> mt fuji
-// -> Akihabara -> ueno
-// asakusa -> ICN -> myeondong
-// hanook village -> dongdaemoon -> gwanjang market
-// gangname -> seonsudong
-// jeonju
-// hongdae
+export const ROADTRIP_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Ann Arbor',
+    state: 'Michigan',
+    country: 'United States of America',
+    coordinates: [42.2808, -83.7430],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Des Moines',
+    state: 'Iowa',
+    country: 'United States of America',
+    coordinates: [41.5868, -93.6250],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Badlands National Park',
+    state: 'Iowa',
+    country: 'United States of America',
+    coordinates: [43.8554, -102.3397],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Denver',
+    state: 'Colorado',
+    country: 'United States of America',
+    coordinates: [39.7392, -104.9903],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Boulder',
+    state: 'Colorado',
+    country: 'United States of America',
+    coordinates: [40.0150, -105.2705],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Grand Junction',
+    state: 'Colorado',
+    country: 'United States of America',
+    coordinates: [39.0639, -108.5506],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Moab',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [38.5733, -109.5498],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Arches National Park',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [38.7331, -109.5925],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Bryce Canyon National Park',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [37.5930, -112.1871],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Horseshoe Bend',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [36.8750, -111.5100],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Antelope Canyon',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [36.8619, -111.3743],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Lake Powell',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [36.9145, -111.4551],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'St. George',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [37.0965, -113.5684],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Las Vegas',
+    state: 'Nevada',
+    country: 'United States of America',
+    coordinates: [36.1699, -115.1398],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+]
 
+export const COVIDROAD_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Des Moines',
+    state: 'Iowa',
+    country: 'United States of America',
+    coordinates: [41.5868, -93.6250],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Badlands National Park',
+    state: 'Iowa',
+    country: 'United States of America',
+    coordinates: [43.8554, -102.3397],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Sioux Falls',
+    state: 'South Dakota',
+    country: 'United States of America',
+    coordinates: [39.7392, -104.9903],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Denver',
+    state: 'Colorado',
+    country: 'United States of America',
+    coordinates: [40.0150, -105.2705],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Yellowstone National Park',
+    state: 'Wyoming',
+    country: 'United States of America',
+    coordinates: [38.7331, -109.5925],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Grand Teton National Park',
+    state: 'Wyoming',
+    country: 'United States of America',
+    coordinates: [35.8242, 127.1489],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Reno',
+    state: 'Nevada',
+    country: 'United States of America',
+    coordinates: [35.8242, 127.1489],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Yosemite National Park',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [35.8242, 127.1489],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Los Angeles',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [35.8242, 127.1489],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Las Vegas',
+    state: 'Nevada',
+    country: 'United States of America',
+    coordinates: [35.8242, 127.1489],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+]
 
 // hawaii trip
 // lihue airport -> kapaa -> anahola -> kilauea

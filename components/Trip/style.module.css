@@ -92,3 +92,19 @@
     transition: background-color 250ms linear;
     z-index: 1;
   }
+
+  /* Define styles for the custom circle icon */
+.custom-circle-icon {
+    border: 2px solid #0074d9; /* Border color */
+    background-color: #0074d9; /* Circle background color */
+    border-radius: 50%; /* Make it a circle */
+  }
+  
+  /* Define styles for the inner circle */
+  .circle {
+    width: 16px; /* Diameter of the inner circle */
+    height: 16px; /* Diameter of the inner circle */
+    margin: 2px; /* Spacing between the inner circle and the border */
+    background-color: white; /* Inner circle color */
+    border-radius: 50%; /* Make it a circle */
+  }

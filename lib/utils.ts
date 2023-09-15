@@ -22,6 +22,7 @@ export enum Lee {
 export interface IPin {
   author: string | string[];
   city: string;
+  state?: string;
   country: string;
   coordinates: [number, number];
   date: string;
@@ -140,4 +141,14 @@ export function changeVariables(view: boolean,
   
       return false;
     });
+  }
+
+  export function getVisitedCountries(trips) {
+    const countriesSet = new Set();
+    trips.forEach((trip) => {
+      trip.markers.forEach((marker) => {
+        countriesSet.add(marker.country);
+      });
+    });
+    return Array.from(countriesSet);
   }

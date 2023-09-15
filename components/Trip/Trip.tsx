@@ -102,10 +102,9 @@ const Trip = ({markers, mapRef}) => {
                 <Polyline 
                     positions={coordinates} 
                     color="royalblue" /* Change the color to royal blue */
-                    weight={3} /* Increase the line weight */
-                    fillOpacity={0.6} /* Add some transparency */
+                    weight={1} /* Increase the line weight */
+                    fillOpacity={5} /* Add some transparency */
                     pathOptions={{
-                        dashArray: '10, 5', /* Adjust the dashArray for a dotted line effect */
                         lineCap: 'round', /* Rounded line ends */
                         lineJoin: 'round', /* Rounded line joints */
                     }}

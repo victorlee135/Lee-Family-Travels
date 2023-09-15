@@ -59,6 +59,7 @@ export default function Map({ trips, mapRef, setMapRef, filterKey }: MapProps) {
     setMapRef(useMap());
     return null;
   };
+  // https://ajalacomfort.com/how-to-display-a-map-on-your-website-with-react-leaflet-for-beginners-2020-highlight-specific-countries-with-custom-colors-2/
   return (
     <MapContainer
       center={[41.56157392223945, -8.397397824887639]}

@@ -24,15 +24,17 @@ const Trip = ({markers, mapRef}) => {
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
     const icon = getIcon;
 
+    const markerRefs = useRef([]); // Create refs to track marker elements
+
 
     const goToNextMarker = (index) => {
         const newIndex = (index + 1) % markers.length;
-        flyToMarker(newIndex);
+        clickMarker(newIndex);
     };
     
     const goToPreviousMarker = (index) => {
         const newIndex = (index - 1 + markers.length) % markers.length;
-        flyToMarker(newIndex);
+        clickMarker(newIndex);
     };
     
     const flyToMarker = (index) => {
@@ -40,7 +42,18 @@ const Trip = ({markers, mapRef}) => {
             animate: true,
             duration: 1.25
         });
-        mapRef.closePopup();
+    };
+
+    const clickMarker = (index) => {
+        const marker = markerRefs.current[index];
+        console.log("Going to marker: ", marker);
+        if (marker) {
+            flyToMarker(index);
+            // Add a delay (e.g., 500 milliseconds) before firing the click event
+            setTimeout(() => {
+                marker.fire('click');
+            }, 1300);
+        }
     };
 
     return (
@@ -51,7 +64,7 @@ const Trip = ({markers, mapRef}) => {
                     icon={icon} 
                     position={marker.coordinates} 
                     title={`${marker.author} at ${marker.city}`}
-                    
+                    ref={(ref) => (markerRefs.current[index] = ref)}
                 >
                     <Popup autoClose={true}>
                         <div>
@@ -59,16 +72,19 @@ const Trip = ({markers, mapRef}) => {
                                 <h1>
                                 {marker.city},<br /> {marker.country}
                                 </h1>
-                                {marker.date && (
-                                <i>
-                                    {getFullDateString(marker.date)} ({getRelativeTimeString(marker.date)})
-                                </i>
-                                )}
+                                <span className={styles.light}>
+                                    <i className="bi bi-calendar"></i> {getFullDateString(marker.date)} (
+                                    {getRelativeTimeString(marker.date)})
+                                </span>
                                 <br />
-                                <span>{marker.author}</span>
+                                <span><i className="bi bi-person-fill"></i> {marker.author}</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span><i className="bi bi-people-fill"></i> others </span>
                                 <br />
-                                <button onClick={() => goToPreviousMarker(index)}>Previous</button>
-                                <button onClick={() => goToNextMarker(index)}>Next</button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button className={styles.button} onClick={() => goToPreviousMarker(index)}>Prev</button>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button className={styles.button}onClick={() => goToNextMarker(index)}>Next</button>
                             </div>
                             <Image
                                 alt={`${marker.author} at ${marker.city}`}

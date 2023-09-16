@@ -1,7 +1,7 @@
 // Represents a single trip within the TripList.
 // Contains trip details, such as the trip name, date, or destination.
 // Communicates with the Map Component to display trip-specific markers and arrows.
-import { Icon, LatLngExpression } from 'leaflet';
+import L, { DivIcon, Icon, IconOptions, LatLngExpression } from 'leaflet';
 import { Marker, Polyline, Popup } from 'react-leaflet';
 import { IPin, getFullDateString, getNameString, getRandomColor, getRelativeTimeString } from '../../lib';
 import PhotoMarker from '../PhotoMarker';
@@ -20,9 +20,21 @@ export const getIcon: Icon = new Icon({
   })
 
 
-const Trip = ({markers, mapRef}) => {
+  export const createIcon = function (color) {
+    return L.divIcon({
+        html: `<div style="background-color: ${color}; border-radius: 50%; width: 9px; height: 9px;"></div>`,
+        className: 'custom-icon',
+        iconSize: L.point(30, 30, true),
+        iconAnchor: [0, 0]
+    });
+  };
+
+
+const Trip = ({markers, mapRef, color}) => {
+    console.log("Color ", color);
+    console.log(markers);
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
-    const icon = getIcon;
+    const icon = createIcon(color);
 
     const markerRefs = useRef([]); // Create refs to track marker elements
 
@@ -61,6 +73,7 @@ const Trip = ({markers, mapRef}) => {
             {/* Render PhotoMarkers */}
             {markers.map((marker, index) => (
                <Marker 
+                    key={index}
                     icon={icon} 
                     position={marker.coordinates} 
                     title={`${marker.author} at ${marker.city}`}
@@ -100,11 +113,13 @@ const Trip = ({markers, mapRef}) => {
             {/* Connect markers with arrows */}
             {coordinates.length > 1 && (
                 <Polyline 
+                    key={color}
                     positions={coordinates} 
-                    color={getRandomColor()} /* Change the color to royal blue */
-                    weight={1.5} /* Increase the line weight */
+                    color={color} /* Change the color to royal blue */
+                    weight={2} /* Increase the line weight */
                     fillOpacity={5} /* Add some transparency */
                     pathOptions={{
+                        dashArray: '5, 5',
                         lineCap: 'round', /* Rounded line ends */
                         lineJoin: 'round', /* Rounded line joints */
                     }}

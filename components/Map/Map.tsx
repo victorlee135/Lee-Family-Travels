@@ -4,7 +4,7 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import { countries } from "../../data/geojson";
 
 import Trip from '../Trip';
-import { ITrip, Lee, filter, getVisitedCountries } from '../../lib';
+import { ITrip, Lee, filter, getRandomColor, getVisitedCountries } from '../../lib';
 import { Filter } from '../Sidebar/Sidebar';
 import { useMemo } from 'react';
 
@@ -42,8 +42,9 @@ export default function Map({ trips, mapRef, setMapRef, filterKey }: MapProps) {
     const components = [];
     for (let i = 0; i < filteredTrips.length; i++) {
       const trip = filteredTrips[i];
+      const color = getRandomColor();
       components.push(
-        <Trip key={trip.id} markers={trip.markers} mapRef={mapRef} />
+        <Trip key={trip.id} markers={trip.markers} mapRef={mapRef} color={color} />
       );
     }
     return components;

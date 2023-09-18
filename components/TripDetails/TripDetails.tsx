@@ -10,9 +10,6 @@ export interface Props {
     mapRef: undefined;
 }
 
-// 1. change this component to Destinations
-// 2. on click go to new page that lists all the destinations of the trip
-// 3. clicking destination within trip will go to that marker on map
 
 const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
     const name = getNames(trip.lee);
@@ -29,12 +26,10 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
     const cities = citySet.size;
     const countries = countrySet.size;
 
-
-    // State variable to manage whether to show list of markers or not
     const [showMarkersList, setShowMarkersList] = useState(false);
 
     // List destinations for specific trip
-    const onClickTrip = () => {
+    const toggleMarkersList = () => {
         if (screen.width <= 438) {
           setOpen(false);
         }
@@ -43,7 +38,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
 
 
     // Go to specific destination on map
-    const onClickMarker = (markerCoordinates) => {
+    const goToMarker = (markerCoordinates) => {
       if (screen.width <= 438) {
         setOpen(false);
       }
@@ -52,7 +47,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
 
     return (
         <div className={styles.listings}>
-          <div className={styles.marker} onClick={onClickTrip}>
+          <div className={styles.marker} onClick={toggleMarkersList}>
             <Image
               src={`/markers/victorIcon.jpeg`}
               alt="Marker"
@@ -64,7 +59,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
           </div>
           <div className={styles.text}>
             <p className={styles.paragraph}>
-              <span className={styles.title} onClick={onClickTrip} title="Go to pin">
+              <span className={styles.title} onClick={toggleMarkersList} title="Go to pin">
                 {trip.tripName}
               </span>
             </p>
@@ -93,7 +88,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
                   {markers.map((marker, index) => (
                     <li 
                       key={index}
-                      onClick={() => onClickMarker(marker.coordinates)}
+                      onClick={() => goToMarker(marker.coordinates)}
                       className={styles.listitem}
                     >
                       {marker.city}, {marker.country}

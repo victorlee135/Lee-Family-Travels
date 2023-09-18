@@ -24,34 +24,11 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
   const [isTrips, setTrips] = useState<boolean>(true);
   const [isStats, setStats] = useState<boolean>(false);
 
-  const getButton = (button: string) => {
-    if (button === 'trips') {
-      if (isTrips) {
-        return styles.button_active;
-      }
-      return styles.button;
-    }
-    if (button === 'stats') {
-      if (isStats) {
-        return styles.button_active;
-      }
-      return styles.button;
-    }
-  }
+  const getButtonClass = (button: string) => (
+    button === (isTrips ? 'trips' : 'stats') ? styles.button_active : styles.button);
 
-  const getLeeButton = (type: Lee) => {
-    if (type === 'All') {
-      if (filterKey.users.includes(Lee.All)) {
-        return styles.button_active;
-      }
-      return styles.button;
-    } else {
-      if (filterKey.users.includes(type)) {
-        return styles.button_active;
-      }
-      return styles.button;
-    }
-  }
+  const getLeeButtonClass = (type: Lee) => 
+    (filterKey.users.includes(type) ? styles.button_active : styles.button);
   
 
   const onClick = (type) => {
@@ -101,7 +78,7 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
             <div className={styles.buttons}>
               <div className={styles.tab}>
                 <button
-                  className={getButton('trips')}
+                  className={getButtonClass('trips')}
                   type={'button'}
                   role="button"
                   onClick={() => 
@@ -113,7 +90,7 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
                 </button>
                 &nbsp;
                 <button 
-                  className={getButton('stats')}
+                  className={getButtonClass('stats')}
                   type={'button'}
                   role="button"
                   onClick={() => 
@@ -145,25 +122,18 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
                     <b>Lee: </b>
                   </label>
                   &nbsp;
-                  <button className={getLeeButton(Lee.All)} type={'button'} role="button"
-                      onClick={() => onClick(Lee.All)} >
-                      {' '}All{' '}
-                  </button>
-                  &nbsp;
-                  <button className={getLeeButton(Lee.Victor)} type={'button'} role="button"
-                      onClick={() => onClick(Lee.Victor)} >
-                      {' '}Victor{' '}
-                  </button>
-                  &nbsp;
-                  <button className={getLeeButton(Lee.Phil)} type={'button'} role="button"
-                      onClick={() => onClick(Lee.Phil)} >
-                      {' '}Phil{' '}
-                  </button>
-                  &nbsp;
-                  <button className={getLeeButton(Lee.Bumo)} type={'button'} role="button"
-                      onClick={() => onClick(Lee.Bumo)} >
-                      {' '}Bumo{' '}
-                  </button>
+                  {Object.values(Lee).map((lee) => (
+                    <button
+                      key={lee}
+                      className={getLeeButtonClass(lee)}
+                      type="button"
+                      role="button"
+                      onClick={() => onClick(lee)}
+                    >
+                      {' '}
+                      {lee}{' '}
+                    </button>
+                  ))}
                 </div>
                 <br></br>
                 <div className={styles.text}>

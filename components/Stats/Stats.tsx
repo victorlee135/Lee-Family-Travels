@@ -17,32 +17,21 @@ export interface StatsProps {
 
 export default function Stats({ trips } : StatsProps) {
     const [statKey, setStatKey] = useState<EStatKeys>(EStatKeys.Markers);
+    const statIcons = {
+        [EStatKeys.Markers]: <i className="bi bi-geo-alt"></i>,
+        [EStatKeys.Cities]: <i className="bi bi-buildings"></i>,
+        [EStatKeys.Countries]: <i className="bi bi-globe-americas"></i>,
+        [EStatKeys.Trips]: <i className="bi bi-suitcase2"></i>,
+        [EStatKeys.Distance]: <i className="bi bi-signpost-fill"></i>,
+      };
 
     function sortStats(statKey) {
         return makeStats(trips, statKey).sort((a, b) => {
             return b.value - a.value;
         })
-    }
+    };
 
     const sortedStats = useMemo(() => sortStats(statKey), [statKey]);
-
-    const getIcon = () => {
-        if (statKey === EStatKeys.Markers) {
-            return <i className="bi bi-geo-alt"></i>;
-        }
-        else if (statKey === EStatKeys.Cities) {
-            return <i className="bi bi-buildings"></i>;
-        }
-        else if (statKey === EStatKeys.Countries) {
-            return <i className="bi bi-globe-americas"></i>;
-        }
-        else if (statKey === EStatKeys.Trips) {
-            return <i className="bi bi-suitcase2"></i>;
-        }
-        else {
-            return <i className="bi bi-signpost-fill"></i>;
-        }
-    };
 
     const getValue = (player: Player) => {
         if (statKey === EStatKeys.Distance) {
@@ -50,7 +39,7 @@ export default function Stats({ trips } : StatsProps) {
         }
         
         return player.value;
-    }
+    };
     
     return (
         <div className={styles.leaderboard}>
@@ -63,10 +52,9 @@ export default function Stats({ trips } : StatsProps) {
                         onChange={(e) => setStatKey(e.target.value as EStatKeys)}
                         className={styles.sort_button}
                     >
-                        <option>Markers</option>
-                        <option>Cities</option>
-                        <option>Countries</option>
-                        <option>Trips</option>
+                        {Object.values(EStatKeys).map((key) => (
+                        <option key={key}>{key}</option>
+                        ))}
                     </select>
                 </div>
             </div>
@@ -84,7 +72,7 @@ export default function Stats({ trips } : StatsProps) {
                         </div>
                         <div className={styles.number}>
                             {' '}
-                            {getValue(player)} {getIcon()}
+                            {getValue(player)} {statIcons[statKey]}
                         </div>
                     </div>
                     <div className={styles.progress}>
@@ -96,5 +84,5 @@ export default function Stats({ trips } : StatsProps) {
                 </div>
             ))}
         </div>
-      )
-}
+      );
+};

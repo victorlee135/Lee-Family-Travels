@@ -22,7 +22,6 @@ export default function Home() {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [mapRef, setMapRef] = useState(null);
   const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
-  console.log("Index: FilterKey ", filterKey);
 
   return (
     <div>

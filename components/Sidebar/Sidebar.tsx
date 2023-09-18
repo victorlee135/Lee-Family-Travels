@@ -71,7 +71,6 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
         setFilterKey({ users: [...updatedUsers, type] });
       }
     }
-    console.log("Sidebar: Updated filterKey ", filterKey);
   };
   
   return (

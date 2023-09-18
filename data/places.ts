@@ -577,16 +577,10 @@ export const COVIDROAD_PICS: IPin[] = [
 // kahului -> kihei
 // haiku -> ka'eleku -> hana -> wailua falls -> makahiku falls -> waimoku falls -> palikea
 
-// first road trip
-// Des moines -> omaha -> denver -> boulder -> moab (arches, bryce, horseshoe bend)
-// mesquite -> las vegas
-
-// Second road trip
-// des moines -> badlands -> sioux falls -> yellowstone -> grand teton -> reno -> yosemite 
-// -> los angeles -> vegas 
 
 // salt lake city
 // brighton -> park city
+// brighton -> solitude -> deer valley -> park city -> snowbird
 
 // seattle (first time)
 
@@ -600,4 +594,23 @@ export const COVIDROAD_PICS: IPin[] = [
 
 // ann arbor
 
-// 
+// todo
+// 1. hawaii
+// 2. solo covid trip
+// 3. salt lake city
+// 4. seattle camping
+// 5. seattle gorge
+// 6. driving to and back from florida
+// 7. south padre
+// 8. florida to shenandoh
+
+
+// stand alones
+// pheonix
+// forest
+// edc
+// chicago
+// vegas
+// universal
+// south padre
+// strouds lake house

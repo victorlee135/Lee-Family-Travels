@@ -34,11 +34,8 @@ const Trip = ({tripId, markers, mapRef, color, selectedTripIndex, setSelectedTri
     };
 
     const selectTrip = () => {
-        console.log("Old trip index: ", selectedTripIndex);
-        
         if (selectedTripIndex !== tripId) {
             setSelectedTripIndex(tripId);
-            console.log("New trip index: ", selectedTripIndex);
         }
         
     }
@@ -52,7 +49,6 @@ const Trip = ({tripId, markers, mapRef, color, selectedTripIndex, setSelectedTri
 
     const openMarker = (index) => {
         const marker = markerRefs.current[index];
-        console.log("Going to marker: ", marker);
         if (marker) {
             flyToMarker(index);
             setTimeout(() => {

@@ -1,4 +1,8 @@
 import { DateTime } from 'luxon';
+import { countries } from "../data/countries";
+import { states } from "../data/usaStates";
+import { provinces } from "../data/canProvinces";
+
 
 export enum ETheme {
     Earth = 'earth',
@@ -23,6 +27,7 @@ export interface IPin {
   author: string | string[];
   city: string;
   state?: string;
+  province?: string;
   country: string;
   coordinates: [number, number];
   date: string;
@@ -143,14 +148,154 @@ export function changeVariables(view: boolean,
     });
   }
 
-  export function getVisitedCountries(trips) {
-    const countriesSet = new Set();
+  export function getVisitedLocations(trips) {
+
+    const locMap = new Map<string, Map<string, number>>([
+      ["countries", new Map<string, number>()],
+      ["states", new Map<string, number>()],
+      ["provinces", new Map<string, number>()],
+    ]);
+
     trips.forEach((trip) => {
       trip.markers.forEach((marker) => {
-        countriesSet.add(marker.country);
+        if (marker.country === "United States of America") {
+
+          const statesMap = locMap.get("states");
+          const currStateCount = statesMap.get(marker.state) || 0;
+          statesMap.set(marker.state, currStateCount + 1);
+
+        } else if (marker.country === "Canada") {
+
+          const provMap = locMap.get("provinces");
+          const currProvCount = provMap.get(marker.province) || 0;
+          provMap.set(marker.province, currProvCount + 1);
+
+        } else {
+          
+          const countryMap = locMap.get("countries");
+          const currCountryCount = countryMap.get(marker.country) || 0;
+          countryMap.set(marker.country, currCountryCount + 1);
+
+        }
       });
     });
-    return Array.from(countriesSet);
+
+    return locMap;
+
+  }
+
+  // have to separate them by frequency first
+  export function createFrequencyRank(locMap) {
+    const initialMap = new Map<string, string[]>([
+      ["countries", []],
+      ["states", []],
+      ["provinces", []],
+    ])
+    const colorRankMap = new Map<number, Map<string, string[]>>([
+      [1, new Map<string, string[]>()],
+      [2, new Map<string, string[]>()],
+      [3, new Map<string, string[]>()],
+      [4, new Map<string, string[]>()],
+      [5, new Map<string, string[]>()],
+    ]);
+    
+    for (const type of locMap.keys()) {
+      const locFreqMap = locMap.get(type);
+
+      for (const location of locFreqMap.keys()) {
+        const rank = Math.min(locFreqMap.get(location), 5);
+
+        let rankMap = colorRankMap.get(rank);
+        if (!rankMap) {
+          rankMap = new Map<string, string[]>();
+          colorRankMap.set(rank, rankMap);
+        }
+
+        const locationList = rankMap.get(type) || [];
+        locationList.push(location);
+
+        rankMap.set(type, locationList);
+
+      }
+    }
+    return colorRankMap;
+  }
+
+  function getGeoData(type, locName) {
+    if (type === "countries") {
+      return countries.features.find(
+        (feature) => locName === feature.properties.name
+      );
+    }
+
+    if (type === "states") {
+      return states.features.find(
+        (feature) => locName === feature.properties.name);
+    }
+
+    if (type === "provinces") {
+      return provinces.features.find(
+        (feature) => locName === feature.properties.name);
+    }
+
+    console.error("Unrecognized type: ", type);
+  }
+
+  export function getGeoDataForLocation(map) {
+    const visitedData: any = { type: 'FeatureCollection', features: []};
+
+    for (const type of map.keys()) {
+
+      const locations = map.get(type);
+
+      for (const location of locations) {
+        const data = getGeoData(type, location);
+        visitedData.features.push(data);
+      }
+
+    }
+
+    return visitedData;
+  }
+
+  export function getStyleByRank(rank) {
+    // FD8D3C
+    // 1 0.2
+    // 2. 0.6
+    let color = "#FD8D3C";
+    if (rank === 1) {
+      color = "#ffe699";
+    } else if (rank === 2) {
+      color = "#ffb84d";
+    } else if (rank === 3) {
+      color = "#e67300";
+    } else if (rank === 4) {
+      color = "#b35900";
+    } else {
+      color = "#cc4400";
+    }
+    return {
+      fillColor: color, // Set the fill color for all countries
+      weight: 1.5,
+      opacity: 1,
+      color: 'grey',
+      dashArray: '3, 3',
+      fillOpacity: 0.35,
+    }
+  }
+
+
+
+  export function getVisitedStates(trips) {
+    const stateSet = new Set();
+    trips.forEach((trip) => {
+      trip.markers.forEach((marker) => {
+        if (marker.country === "United States of America") {
+          stateSet.add(marker.state);
+        }
+      });
+    });
+    return Array.from(stateSet);
   }
 
 export function getRandomColor(): string {

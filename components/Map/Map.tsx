@@ -1,9 +1,8 @@
 import L from 'leaflet';
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
-import { countries } from "../../data/geojson";
 
 import Trip from '../Trip';
-import { ITrip, filter, getVisitedCountries } from '../../lib';
+import { ITrip, createFrequencyRank, filter, getGeoDataForLocation, getStyleByRank, getVisitedLocations } from '../../lib';
 import { Filter } from '../Sidebar/Sidebar';
 import { useMemo, useState } from 'react';
 import CustomPolyline from '../CustomPolyline/CustomPolyline';
@@ -31,12 +30,11 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
     return null;
   };
 
-
   const [selectedTripIndex, setSelectedTripIndex] = useState(-1);
 
   const filteredTrips = filter(trips, filterKey);
-  const tripComponents = useMemo(() => {
 
+  const tripComponents = useMemo(() => {
     const components = [];
 
     for (let i = 0; i < filteredTrips.length; i++) {
@@ -63,29 +61,36 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
           color={color}
           selectedTripIndex={selectedTripIndex} />
       )
-
     }
     return components;
   }, [filteredTrips, filterKey]);
 
-  const visitedComponents = useMemo(() => {
-    const visitedCountries = getVisitedCountries(filteredTrips);
-    const visitedData: any = { type: 'FeatureCollection', features: []};
-    for (let i = 0; i < visitedCountries.length; i++) {
-      const countryData = countries.features.find(
-        (feature) => visitedCountries[i] === feature.properties.name
-      );
-      visitedData.features.push(countryData);
-    }
 
-    return <GeoJSON key={Math.random()} data={visitedData} style={(feature) => ({
-      fillColor: 'green', // Set the fill color for all countries
-      weight: 2,
-      opacity: 1,
-      color: 'white',
-      dashArray: '3',
-      fillOpacity: 0.7,
-    })} />;
+  const geoLayerComponents = useMemo(() => {
+    const components = [];
+    const locationMap = getVisitedLocations(filteredTrips);
+    console.log("locationMap: ", locationMap);
+
+    // separate rankings 
+    const locFreqMap = createFrequencyRank(locationMap);
+
+    console.log("locFreqMap ", locFreqMap);
+    for (const rank of locFreqMap.keys()) {
+
+      const rankMap = locFreqMap.get(rank);
+      // get geoData
+      const visitedData = getGeoDataForLocation(rankMap);
+
+      // assign color based on rank
+      const style = getStyleByRank(rank);
+
+      // create GeoJson based on data
+      components.push(
+        <GeoJSON key={"r" + rank} data={visitedData} style={style} />
+      );
+    };
+    console.log(components);
+    return components;
   }, [filteredTrips, filterKey]);
 
 
@@ -100,8 +105,9 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
     >
       <Ref></Ref>
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-      {/* {visitedComponents} */}
+      {geoLayerComponents}
       {tripComponents}
+      
     </MapContainer>
   )
 }

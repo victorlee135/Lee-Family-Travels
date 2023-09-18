@@ -33,6 +33,15 @@
   .light {
     font-weight: 400;
   }
+
+  .test {
+    margin-top: 0;
+    font-weight: 400;
+  }
+
+  .h1 {
+    margin: 0;
+  }
   
   .image {
     border-radius: 10px;

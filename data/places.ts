@@ -356,6 +356,16 @@ export const ROADTRIP_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
+    city: 'Gary',
+    state: 'Indiana',
+    country: 'United States of America',
+    coordinates: [41.6020, -87.3372],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
     city: 'Des Moines',
     state: 'Iowa',
     country: 'United States of America',
@@ -449,7 +459,7 @@ export const ROADTRIP_PICS: IPin[] = [
     city: 'Lake Powell',
     state: 'Arizona',
     country: 'United States of America',
-    coordinates: [36.9145, -111.4551],
+    coordinates: [37.0683, -111.2433],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -539,6 +549,16 @@ export const COVIDROAD_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
+    city: 'Twin Falls',
+    state: 'Idaho',
+    country: 'United States of America',
+    coordinates: [42.5558, -114.4701],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
     city: 'Reno',
     state: 'California',
     country: 'United States of America',
@@ -578,39 +598,662 @@ export const COVIDROAD_PICS: IPin[] = [
   }
 ]
 
-// hawaii trip
-// lihue airport -> kapaa -> anahola -> kilauea
-// hanalei -> walmea -> koke'e state park
-// maui
-// kahului -> kihei
-// haiku -> ka'eleku -> hana -> wailua falls -> makahiku falls -> waimoku falls -> palikea
+export const HAWAII_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Los Angeles',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [33.9438, -118.4091],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Lihue',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [21.9750, -159.3389],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Kapaa',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [22.0897, -159.3358],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Anahola',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [22.1396, -159.3122],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Kilauea',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [22.2150, -159.4064],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Hanalei',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [22.2048, -159.4813],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Waimea',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [21.9634, -159.3673],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Koke\'e State Park',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [22.1319, -159.6465],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Kahului',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.8947, -156.4700],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Kihei',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7697, -156.4499],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Haiku',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.9126, -156.3166],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Ka\'eleku',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7553, -156.0478],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Hana',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7540, -155.9883],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Wailua Falls',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7904, -156.3315],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Makahiku Falls',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7197, -156.2508],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Waimoku Falls',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7267, -156.2553],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Palikea',
+    state: 'Hawaii',
+    country: 'United States of America',
+    coordinates: [20.7107, -156.2494],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
 
+export const COVID_MOVING_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Westland',
+    state: 'Michigan',
+    country: 'United States of America',
+    coordinates: [42.3242, -83.4002],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Champaign',
+    state: 'Illinois',
+    country: 'United States of America',
+    coordinates: [40.1164, -88.2434],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Omaha',
+    state: 'Nebraska',
+    country: 'United States of America',
+    coordinates: [41.2565, -95.9345],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Denver',
+    state: 'Colorado',
+    country: 'United States of America',
+    coordinates: [39.8680, -104.9719],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Salt Lake City',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [40.7608, -111.8910],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Sacramento',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [38.5816, -121.4944],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'San Francisco',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [37.7749, -122.4194],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'San Jose',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [37.3541, -121.9552],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Santa Cruz',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [36.9741, -122.0308],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Santa Barbara',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [34.4208, -119.6982],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'West Adams',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [34.0316, -118.3417],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
+
+export const SKIROADTRIP_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Sawtelle - Los Angeles',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [34.0421, -118.4695],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Las Vegas',
+    state: 'Nevada',
+    country: 'United States of America',
+    coordinates: [36.1215, -115.1704],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Murray',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [40.6669, -111.8879],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Mt Brighton',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [40.5867, -111.6192],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Park City',
+    state: 'Utah',
+    country: 'United States of America',
+    coordinates: [40.6461, -111.4979],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Evanston',
+    state: 'Wyoming',
+    country: 'United States of America',
+    coordinates: [41.2683, -110.9632],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Rock Springs',
+    state: 'Wyoming',
+    country: 'United States of America',
+    coordinates: [41.5875, -109.2029],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Cheyenne',
+    state: 'Wyoming',
+    country: 'United States of America',
+    coordinates: [41.1399, -104.8202],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Bennington',
+    state: 'Nebraska',
+    country: 'United States of America',
+    coordinates: [41.3402, -97.5881],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
+
+export const FLORIDA_MOVING_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Westland',
+    state: 'Michigan',
+    country: 'United States of America',
+    coordinates: [42.3242, -83.4002],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Cincinnati',
+    state: 'Ohio',
+    country: 'United States of America',
+    coordinates: [39.1031, -84.5120],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Lexington',
+    state: 'Kentucky',
+    country: 'United States of America',
+    coordinates: [38.0406, -84.5037],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Knoxville',
+    state: 'Tennessee',
+    country: 'United States of America',
+    coordinates: [35.9606, -83.9207],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Atlanta',
+    state: 'Georgia',
+    country: 'United States of America',
+    coordinates: [33.7490, -84.3880],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Albany',
+    state: 'Georgia',
+    country: 'United States of America',
+    coordinates: [31.5785, -84.1557],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Gainesville',
+    state: 'Florida',
+    country: 'United States of America',
+    coordinates: [29.6516, -82.3248],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Orlando',
+    state: 'Florida',
+    country: 'United States of America',
+    coordinates: [28.5383, -81.3792],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
+
+export const SHEN_FAMILY_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Lake Mary',
+    state: 'Florida',
+    country: 'United States of America',
+    coordinates: [28.7589, -81.3178],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Daytona Beach',
+    state: 'Florida',
+    country: 'United States of America',
+    coordinates: [29.2108, -81.0228],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Jacksonville',
+    state: 'Florida',
+    country: 'United States of America',
+    coordinates: [30.3322, -81.6557],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Savannah',
+    state: 'Georgia',
+    country: 'United States of America',
+    coordinates: [32.0809, -81.0912],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Charlotte',
+    state: 'North Carolina',
+    country: 'United States of America',
+    coordinates: [35.2271, -80.8431],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Shenandoah National Park',
+    state: 'Virginia',
+    country: 'United States of America',
+    coordinates: [38.2928, -78.6796],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
+
+export const SEATTLE_CAMP_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Tacoma',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.2529, -122.4443],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Olympia',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.0379, -122.9007],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Port Angeles',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [48.1181, -123.4307],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Lake Crescent',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [48.0484, -123.8361],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Forks',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.9488, -124.3856],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Rialto Beach',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.9159, -124.6371],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Kalaloch',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.6177, -124.3497],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
+
+export const PHIL_BDAY_GORGE_PICS: IPin[] = [
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Tacoma Airport',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.2529, -122.3443],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Druids Glen Golf Course',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.2973, -122.1281],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Keechelus Lake',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.2924, -121.3011],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Cle Elum',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.1954, -120.9398],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil],
+    city: 'Gorge Amphitheater',
+    state: 'Washington',
+    country: 'United States of America',
+    coordinates: [47.0067, -119.9972],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  }
+];
 
 // salt lake city
 // brighton -> park city
 // brighton -> solitude -> deer valley -> park city -> snowbird
 
-// seattle (first time)
 
-// seattle (second time)
-
-// pheonix (wedding)
-
-// south padre
-
-// forest
-
-// ann arbor
-
-// todo
-// 1. hawaii
-// 2. solo covid trip
-// 3. salt lake city
-// 4. seattle camping
-// 5. seattle gorge
-// 6. driving to and back from florida
-// 7. south padre
-// 8. florida to shenandoh
 
 
 // stand alones
@@ -622,3 +1265,4 @@ export const COVIDROAD_PICS: IPin[] = [
 // universal
 // south padre
 // strouds lake house
+// cedar point

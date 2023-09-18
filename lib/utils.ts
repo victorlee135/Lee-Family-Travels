@@ -110,6 +110,16 @@ export const getNameString = (authors: string[] | string) => {
   return authors.slice(0, size - 1).join(', ') + ' and ' + authors[size - 1];
 };
 
+export const getCountryOrState = (marker: IPin) => {
+  if (marker.country === "United States of America") {
+    return marker.state;
+  } else if (marker.country === "Canada") {
+    return marker.province;
+  } else {
+    return marker.country;
+  }
+}
+
 export const sortByOldest = (a: IPin, b: IPin) => {
   return (
     DateTime.fromISO(a.date).toMillis() - DateTime.fromISO(b.date).toMillis()
@@ -276,11 +286,10 @@ export function changeVariables(view: boolean,
     }
     return {
       fillColor: color, // Set the fill color for all countries
-      weight: 1.5,
+      weight: 1,
       opacity: 1,
       color: 'grey',
-      dashArray: '3, 3',
-      fillOpacity: 0.35,
+      fillOpacity: 0.25,
     }
   }
 
@@ -297,6 +306,11 @@ export function changeVariables(view: boolean,
     });
     return Array.from(stateSet);
   }
+
+// Good colors
+// color: #231CF6; color: #B51135; #B72210 color: #6136DD; color: #121BA8DE;
+// color: #C1309C;
+// olor: #5C811A; color: #7E38FA; color: #C111AC; color: #591A93;
 
 export function getRandomColor(): string {
   const minContrast = 4.5; // Minimum contrast ratio for AA

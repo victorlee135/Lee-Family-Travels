@@ -46,6 +46,7 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
         <Trip 
           key={trip.id} 
           tripId={trip.id}
+          tripName={trip.tripName}
           markers={trip.markers} 
           mapRef={mapRef} 
           color={color}
@@ -69,12 +70,10 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
   const geoLayerComponents = useMemo(() => {
     const components = [];
     const locationMap = getVisitedLocations(filteredTrips);
-    console.log("locationMap: ", locationMap);
 
     // separate rankings 
     const locFreqMap = createFrequencyRank(locationMap);
 
-    console.log("locFreqMap ", locFreqMap);
     for (const rank of locFreqMap.keys()) {
 
       const rankMap = locFreqMap.get(rank);
@@ -86,10 +85,9 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
 
       // create GeoJson based on data
       components.push(
-        <GeoJSON key={"r" + rank} data={visitedData} style={style} />
+        <GeoJSON key={"r" + rank + "." + Math.random()} data={visitedData} style={style} />
       );
     };
-    console.log(components);
     return components;
   }, [filteredTrips, filterKey]);
 

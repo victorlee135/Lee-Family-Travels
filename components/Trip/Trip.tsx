@@ -3,7 +3,7 @@
 // Communicates with the Map Component to display trip-specific markers and arrows.
 import L, { LatLngExpression } from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
-import { getFullDateString, getRelativeTimeString } from '../../lib';
+import { getCountryOrState, getFullDateString, getRelativeTimeString } from '../../lib';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { renderToStaticMarkup } from 'react-dom/server';
 import { faLocationDot, faMapPin } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ import { useRef } from 'react';
 import styles from './style.module.css';
 
 
-const Trip = ({tripId, markers, mapRef, color, selectedTripIndex, setSelectedTripIndex}) => {
+const Trip = ({tripId, tripName, markers, mapRef, color, selectedTripIndex, setSelectedTripIndex}) => {
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
     const markerRefs = useRef([]);
 
@@ -41,9 +41,10 @@ const Trip = ({tripId, markers, mapRef, color, selectedTripIndex, setSelectedTri
     }
     
     const flyToMarker = (index) => {
-        mapRef.flyTo(coordinates[index], 10, {
+        const currentZoom = mapRef.getZoom();
+        mapRef.flyTo(coordinates[index], currentZoom, {
             animate: true,
-            duration: 1.25
+            duration: 0.75
         });
     };
 
@@ -53,7 +54,7 @@ const Trip = ({tripId, markers, mapRef, color, selectedTripIndex, setSelectedTri
             flyToMarker(index);
             setTimeout(() => {
                 marker.fire('click');
-            }, 1300);
+            }, 800);
         }
     };
 
@@ -74,9 +75,13 @@ const Trip = ({tripId, markers, mapRef, color, selectedTripIndex, setSelectedTri
                     <Popup autoClose={true}>
                         <div>
                             <div className={styles.text}>
-                                <h1>
-                                {marker.city},<br /> {marker.country}
+                                <h1 className={styles.h1}>
+                                    {marker.city}, {getCountryOrState(marker)}
                                 </h1>
+                                <span className={styles.test}>
+                                    <i className="bi bi-info-circle"></i> {tripName}
+                                </span>
+                                <br />
                                 <span className={styles.light}>
                                     <i className="bi bi-calendar"></i> {getFullDateString(marker.date)} (
                                     {getRelativeTimeString(marker.date)})

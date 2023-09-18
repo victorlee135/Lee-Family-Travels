@@ -19,7 +19,7 @@ import { EUR_PICS, BANFF_PICS, ASIA_PICS, ROADTRIP_PICS, COVIDROAD_PICS } from "
 
 export const TripList: ITrip[] = [
     {
-      id: "1",
+      id: "0",
       tripName: "Europe 2023",
       author: "Victor Lee",
       lee: [Lee.Victor],
@@ -29,7 +29,7 @@ export const TripList: ITrip[] = [
       googlePhotos: "https://testEurope.com"
     },
     {
-      id: "2",
+      id: "1",
       tripName: "Banff 2023",
       author: "Victor Lee",
       lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
@@ -39,7 +39,7 @@ export const TripList: ITrip[] = [
       googlePhotos: "https://testBanff.com"
     },
     {
-      id: "3",
+      id: "2",
       tripName: "National Park Road Trip",
       author: "Victor Lee",
       lee: [Lee.Victor],
@@ -49,7 +49,7 @@ export const TripList: ITrip[] = [
       googlePhotos: "https://testRoadTrip.com"
     },
     {
-      id: "4",
+      id: "3",
       tripName: "COVID Road Trip",
       author: "Victor Lee",
       lee: [Lee.Victor],
@@ -69,7 +69,7 @@ export const TripList: ITrip[] = [
     //   googlePhotos: "https://testHawaii.com"
     // },
     {
-      id: "5",
+      id: "4",
       tripName: "Asia 2022/2023",
       author: "Victor Lee",
       lee: [Lee.Victor, Lee.Phil],

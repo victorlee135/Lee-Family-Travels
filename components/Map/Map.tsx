@@ -1,12 +1,12 @@
 import L from 'leaflet';
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-cluster';
 import { countries } from "../../data/geojson";
 
 import Trip from '../Trip';
-import { ITrip, Lee, filter, getRandomColor, getVisitedCountries } from '../../lib';
+import { ITrip, filter, getVisitedCountries } from '../../lib';
 import { Filter } from '../Sidebar/Sidebar';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import CustomPolyline from '../CustomPolyline/CustomPolyline';
 
 
 export const createClusterCustomIcon = function (cluster) {
@@ -17,35 +17,53 @@ export const createClusterCustomIcon = function (cluster) {
   });
 };
 
-export const arrowIcon = L.divIcon({
-  className: 'custom-icon',
-  html: '<svg width="20" height="20"><polygon points="0,0 10,10 20,0" fill="blue"/></svg>',
-  iconSize: [20, 20],
-  iconAnchor: [10, 10],
-});
-
 export interface MapProps {
   trips: ITrip[];
+  tripColors: string[];
   mapRef: undefined;
   setMapRef: Function;
   filterKey: Filter;
 }
 
-export default function Map({ trips, mapRef, setMapRef, filterKey }: MapProps) {
+export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }: MapProps) {
   const Ref = () => {
     setMapRef(useMap());
     return null;
   };
 
+
+  const [selectedTripIndex, setSelectedTripIndex] = useState(-1);
+
   const filteredTrips = filter(trips, filterKey);
   const tripComponents = useMemo(() => {
+
     const components = [];
+
     for (let i = 0; i < filteredTrips.length; i++) {
+
       const trip = filteredTrips[i];
-      const color = getRandomColor();
+      const color = tripColors[trip.id];
+
       components.push(
-        <Trip key={trip.id} markers={trip.markers} mapRef={mapRef} color={color} />
+        <Trip 
+          key={trip.id} 
+          tripId={trip.id}
+          markers={trip.markers} 
+          mapRef={mapRef} 
+          color={color}
+          selectedTripIndex={selectedTripIndex}
+          setSelectedTripIndex={setSelectedTripIndex} />
       );
+
+      components.push(
+        <CustomPolyline
+          key={"poly" + trip.id}
+          tripId={trip.id}
+          markers={trip.markers}
+          color={color}
+          selectedTripIndex={selectedTripIndex} />
+      )
+
     }
     return components;
   }, [filteredTrips, filterKey]);
@@ -70,15 +88,7 @@ export default function Map({ trips, mapRef, setMapRef, filterKey }: MapProps) {
     })} />;
   }, [filteredTrips, filterKey]);
 
-  // add logic for us states
 
-  // make fill color pretty
-
-  // instead make this a toggle for visited countries
-
-
-  
-  // https://ajalacomfort.com/how-to-display-a-map-on-your-website-with-react-leaflet-for-beginners-2020-highlight-specific-countries-with-custom-colors-2/
   return (
     <MapContainer
       center={[41.56157392223945, -8.397397824887639]}

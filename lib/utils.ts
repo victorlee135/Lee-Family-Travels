@@ -154,13 +154,48 @@ export function changeVariables(view: boolean,
   }
 
 export function getRandomColor(): string {
-      const letters = '0123456789ABCDEF';
-      let color = '#';
-      for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-    }
+  const minContrast = 4.5; // Minimum contrast ratio for AA
+  let color = getRandomHexColor();
+
+  while (calculateContrast(color, "#FFFFFF") < minContrast) {
+    color = getRandomHexColor();
+  }
+
+  return color;
+}
+
+function getRandomHexColor(): string {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * letters.length)];
+  }
+
+  return color;
+}
+
+function calculateContrast(color1: string, color2: string): number {
+  const lum1 = getLuminance(color1);
+  const lum2 = getLuminance(color2);
+  const brightest = Math.max(lum1, lum2);
+  const darkest = Math.min(lum1, lum2);
+  return (brightest + 0.05) / (darkest + 0.05);
+}
+
+function getLuminance(color: string): number {
+  const hex = color.slice(1); // Remove the #
+  const r = parseInt(hex.slice(0, 2), 16) / 255;
+  const g = parseInt(hex.slice(2, 4), 16) / 255;
+  const b = parseInt(hex.slice(4, 6), 16) / 255;
+  return (
+    0.2126 * adjustGamma(r) + 0.7152 * adjustGamma(g) + 0.0722 * adjustGamma(b)
+  );
+}
+
+function adjustGamma(value: number): number {
+  return value <= 0.03928 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+}
 
   export function getNames(names) {
     const size = names.length;
@@ -170,3 +205,4 @@ export function getRandomColor(): string {
     }
     return names.slice(0, size - 1).join(', ') + ' and ' + names[size - 1];
   }
+  

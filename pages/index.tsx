@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { ThemeProvider } from '../hooks/useTheme';
 import { TripList } from '~/data/triplist';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
-import { Lee } from '~/lib/utils';
+import { Lee, getRandomColor } from '~/lib/utils';
 import { Filter } from '~/components/Sidebar/Sidebar';
 
 // import { PLACES } from '../data/places';
@@ -13,14 +12,17 @@ import { Filter } from '~/components/Sidebar/Sidebar';
 const Map = dynamic(() => import('../components/Map'), { ssr: false });
 
 
-
+const tripColors = [];
+  for (let i = 0; i < TripList.length; i++) {
+    tripColors.push(getRandomColor());
+  }
 
 
 export default function Home() {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [mapRef, setMapRef] = useState(null);
   const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
-  
+  console.log("Index: FilterKey ", filterKey);
 
   return (
     <div>
@@ -42,9 +44,12 @@ export default function Home() {
         setFilterKey={setFilterKey}
       />
       <div className="map">
-        <ThemeProvider>
-          <Map mapRef={mapRef} setMapRef={setMapRef} trips={TripList} filterKey={filterKey} />
-        </ThemeProvider>
+          <Map 
+            mapRef={mapRef} 
+            setMapRef={setMapRef} 
+            trips={TripList} 
+            tripColors={tripColors}
+            filterKey={filterKey} />
       </div>
     </div>
   );

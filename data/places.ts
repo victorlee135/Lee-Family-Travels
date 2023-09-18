@@ -471,10 +471,20 @@ export const COVIDROAD_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
+    city: 'Northville',
+    state: 'Michigan',
+    country: 'United States of America',
+    coordinates: [42.4311, -83.4833],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
     city: 'Des Moines',
     state: 'Iowa',
     country: 'United States of America',
-    coordinates: [41.5868, -93.6250],
+    coordinates: [41.6868, -93.7250],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },

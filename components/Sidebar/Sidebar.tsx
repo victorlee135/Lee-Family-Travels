@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { Filters, IPin, ITrip, Lee, changeVariables, filter } from '~/lib/utils';
+import { ITrip, Lee, changeVariables, filter } from '~/lib/utils';
 import styles from './style.module.css';
 import { CSSTransition } from 'react-transition-group';
 import TripDetails from '../TripDetails/TripDetails';
@@ -56,7 +56,7 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
 
   const onClick = (type) => {
     const updatedUsers = filterKey.users.filter((user) => user !== Lee.All);
-  
+    
     if (type === 'All') {
       setFilterKey({ users: [Lee.All] });
     } else {
@@ -71,6 +71,7 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
         setFilterKey({ users: [...updatedUsers, type] });
       }
     }
+    console.log("Sidebar: Updated filterKey ", filterKey);
   };
   
   return (
@@ -169,12 +170,12 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
                 <div className={styles.text}>
                   <label> <b>Year Range: </b> </label>
                   &nbsp;&nbsp;&nbsp;
-                  <input type="text" placeholder="1998" value="" 
+                  <input type="text" placeholder="1998" 
                     style={{ width: '13%', textAlign: 'center' }} />
                   &nbsp;&nbsp;&nbsp;
                   to
                   &nbsp;&nbsp;&nbsp;
-                  <input type="text" placeholder="2023" value="" 
+                  <input type="text" placeholder="2023" 
                     style={{ width: '13%', textAlign: 'center' }} />
                 </div>
               </div>

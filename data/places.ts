@@ -1,6 +1,39 @@
 import { IPin, Lee } from '../lib';
 
+const addPin = (author, lee, city, state, province, country, coordinates, date, photo) => {
+  return {
+    author: author,
+    lee: lee,
+    city: city,
+    state: state,
+    province: province,
+    country: country,
+    coordinates: coordinates,
+    date: date,
+    photo: photo
+  }
+}
+
 export const EUR_PICS: IPin[] = [
+    {
+      author: 'Victor Lee',
+      lee: [Lee.Victor],
+      city: 'Newark',
+      state: 'New Jersey',
+      country: 'United States of America',
+      coordinates: [40.6895, -74.1745],
+      date: '2023-07-27',
+      photo: '/images/nice.jpeg'
+    },
+    {
+      author: 'Victor Lee',
+      lee: [Lee.Victor],
+      city: 'Paris',
+      country: 'France',
+      coordinates: [48.8566, 2.3522],
+      date: '2023-07-27',
+      photo: '/images/nice.jpeg'
+    },
     {
       author: 'Victor Lee',
       lee: [Lee.Victor],
@@ -79,6 +112,15 @@ export const EUR_PICS: IPin[] = [
       city: 'Sintra',
       country: 'Portugal',
       coordinates: [38.7804, -9.4991],
+      date: '2023-08-15',
+      photo: '/images/sintra.jpeg'
+    },
+    {
+      author: 'Victor Lee',
+      lee: [Lee.Victor],
+      city: 'Ponta Delgada',
+      country: 'Portugal',
+      coordinates: [37.7394, -25.6687],
       date: '2023-08-15',
       photo: '/images/sintra.jpeg'
     }
@@ -361,7 +403,8 @@ export const ROADTRIP_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [41.6020, -87.3372],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -371,7 +414,8 @@ export const ROADTRIP_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [41.5868, -93.6250],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -390,16 +434,6 @@ export const ROADTRIP_PICS: IPin[] = [
     state: 'Colorado',
     country: 'United States of America',
     coordinates: [40.0150, -105.2705],
-    date: '2023-08-20',
-    photo: '/images/porto.jpeg'
-  },
-  {
-    author: 'Victor Lee',
-    lee: [Lee.Victor],
-    city: 'Grand Junction',
-    state: 'Colorado',
-    country: 'United States of America',
-    coordinates: [39.0639, -108.5506],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -466,10 +500,10 @@ export const ROADTRIP_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
-    city: 'St. George',
+    city: 'Zion National Park',
     state: 'Utah',
     country: 'United States of America',
-    coordinates: [37.0965, -113.5684],
+    coordinates: [37.2982, -113.0263],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -480,6 +514,16 @@ export const ROADTRIP_PICS: IPin[] = [
     state: 'Nevada',
     country: 'United States of America',
     coordinates: [36.1699, -115.1398],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg'
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Carlsbad',
+    state: 'California',
+    country: 'United States of America',
+    coordinates: [33.1581, -117.3506],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   }
@@ -499,12 +543,24 @@ export const COVIDROAD_PICS: IPin[] = [
   {
     author: 'Victor Lee',
     lee: [Lee.Victor],
+    city: 'Gary',
+    state: 'Indiana',
+    country: 'United States of America',
+    coordinates: [41.6020, -87.3372],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg',
+    wayPoint: true
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
     city: 'Des Moines',
     state: 'Iowa',
     country: 'United States of America',
     coordinates: [41.6868, -93.7250],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -514,7 +570,8 @@ export const COVIDROAD_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [43.5446, -96.7311],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -522,7 +579,7 @@ export const COVIDROAD_PICS: IPin[] = [
     city: 'Badlands National Park',
     state: 'Iowa',
     country: 'United States of America',
-    coordinates: [43.8554, -102.3397],
+    coordinates: [43.8405, -102.3733],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   },
@@ -554,7 +611,8 @@ export const COVIDROAD_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [42.5558, -114.4701],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -564,7 +622,8 @@ export const COVIDROAD_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [39.5296, -119.8138],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -790,7 +849,8 @@ export const COVID_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [40.1164, -88.2434],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -800,7 +860,8 @@ export const COVID_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [41.2565, -95.9345],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -830,7 +891,8 @@ export const COVID_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [38.5816, -121.4944],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -850,7 +912,8 @@ export const COVID_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [37.3541, -121.9552],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -860,7 +923,8 @@ export const COVID_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [36.9741, -122.0308],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -913,7 +977,8 @@ export const SKIROADTRIP_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [40.6669, -111.8879],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -943,7 +1008,8 @@ export const SKIROADTRIP_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [41.2683, -110.9632],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -953,7 +1019,8 @@ export const SKIROADTRIP_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [41.5875, -109.2029],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -963,7 +1030,8 @@ export const SKIROADTRIP_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [41.1399, -104.8202],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -972,6 +1040,28 @@ export const SKIROADTRIP_PICS: IPin[] = [
     state: 'Nebraska',
     country: 'United States of America',
     coordinates: [41.3402, -97.5881],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg',
+    wayPoint: true
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Gary',
+    state: 'Indiana',
+    country: 'United States of America',
+    coordinates: [41.6020, -87.3372],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg',
+    wayPoint: true
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor],
+    city: 'Northville',
+    state: 'Michigan',
+    country: 'United States of America',
+    coordinates: [42.3311, -83.4833],
     date: '2023-08-20',
     photo: '/images/porto.jpeg'
   }
@@ -996,7 +1086,8 @@ export const FLORIDA_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [39.1031, -84.5120],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1006,7 +1097,8 @@ export const FLORIDA_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [38.0406, -84.5037],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1016,7 +1108,8 @@ export const FLORIDA_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [35.9606, -83.9207],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1026,7 +1119,8 @@ export const FLORIDA_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [33.7490, -84.3880],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1036,7 +1130,8 @@ export const FLORIDA_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [31.5785, -84.1557],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1046,7 +1141,8 @@ export const FLORIDA_MOVING_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [29.6516, -82.3248],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1089,7 +1185,8 @@ export const SHEN_FAMILY_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [30.3322, -81.6557],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1099,7 +1196,19 @@ export const SHEN_FAMILY_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [32.0809, -81.0912],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
+  },
+  {
+    author: 'Victor Lee',
+    lee: [Lee.Victor, Lee.Phil, Lee.Bumo],
+    city: 'Columbia',
+    state: 'South Carolina',
+    country: 'United States of America',
+    coordinates: [34.0007, -81.0348],
+    date: '2023-08-20',
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1109,7 +1218,8 @@ export const SHEN_FAMILY_PICS: IPin[] = [
     country: 'United States of America',
     coordinates: [35.2271, -80.8431],
     date: '2023-08-20',
-    photo: '/images/porto.jpeg'
+    photo: '/images/porto.jpeg',
+    wayPoint: true
   },
   {
     author: 'Victor Lee',
@@ -1249,20 +1359,77 @@ export const PHIL_BDAY_GORGE_PICS: IPin[] = [
   }
 ];
 
+export const SOUTH_PADRE_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "South Padre Island", "Texas", 
+    null, "United States of America", [26.1118, -97.1681], '2023-08-20', '/images/porto.jpeg')
+]
+
+export const FORT_MYERS_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Fort Myers", "Florida", null, "United States of America", [26.6406, -81.8723], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const FORT_LAUDERDALE_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Fort Lauderdale", "Florida", null, "United States of America", [26.1224, -80.1373], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const WINDSOR_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Windsor", null, "Ontario", "Canada", [42.3149, -83.0364], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const OKEECHOBEE_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Okeechobee", "Florida", null, "United States of America", [27.2439, -80.8298], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const FOREST_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Rothbury", "Michigan", null, "United States of America", [43.6727, -86.2401], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const UNIVERSAL_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Universal Studios Orlando", "Florida", null, "United States of America", [28.4744, -81.4679], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const CEDAR_POINT_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Cedar Point", "Ohio", null, "United States of America", [41.4819, -82.6836], '2023-08-20', '/images/porto.jpeg'),
+]
+
+export const HIGGINS_LAKE_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Higgins Lake", "Michigan", null, "United States of America", [44.5059, -84.7658], '2023-08-20', '/images/porto.jpeg')
+]
+
+
+
 // salt lake city
 // brighton -> park city
 // brighton -> solitude -> deer valley -> park city -> snowbird
 
+// Trips
+// senior spring break
 
 
 
 // stand alones
 // pheonix
-// forest
-// edc
+// forest x2
+// ann arbor (all 4 year houses, big house)
+// djs up north
+// higgins lake
+// edc x3
 // chicago
-// vegas
+// vegas (fremont) x2
 // universal
 // south padre
 // strouds lake house
 // cedar point
+// fort myers
+// fort lauderdale
+// windsor x2
+// toronto
+// okeechobee
+// hard summer
+// head in the clouds
+// outside lands
+// la techno one
+// la historic park
+// movement
+// carlsbad
+// san diego (little saigon, pacific, ob, gaslamp, cornado, balboa)

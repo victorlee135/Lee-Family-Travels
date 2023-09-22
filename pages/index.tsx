@@ -4,24 +4,29 @@ import Head from 'next/head';
 import { TripList } from '~/data/triplist';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
-import { Lee, getRandomColor } from '~/lib/utils';
+import { Lee, getRandomColor, specialTrips } from '~/lib/utils';
 import { Filter } from '~/components/Sidebar/Sidebar';
-
-// import { PLACES } from '../data/places';
 
 const Map = dynamic(() => import('../components/Map'), { ssr: false });
 
 
-const tripColors = [];
-  for (let i = 0; i < TripList.length; i++) {
-    tripColors.push(getRandomColor());
-  }
+
 
 
 export default function Home() {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [mapRef, setMapRef] = useState(null);
   const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
+
+  const tripColors = [];
+  for (let i = 0; i < TripList.length; i++) {
+    if (specialTrips.has(TripList[i].id)) {
+      tripColors.push(specialTrips.get(TripList[i].id));
+    } else {
+      tripColors.push(getRandomColor());
+    }
+    
+  }
 
   return (
     <div>
@@ -49,6 +54,12 @@ export default function Home() {
             trips={TripList} 
             tripColors={tripColors}
             filterKey={filterKey} />
+          {/* <GMap 
+            mapRef={mapRef} 
+            setMapRef={setMapRef} 
+            trips={TripList} 
+            tripColors={tripColors}
+            filterKey={filterKey} /> */}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { ITrip, Lee, changeVariables, filter } from '~/lib/utils';
+import { ITrip, Lee, changeVariables, filter, sortTrips } from '~/lib/utils';
 import styles from './style.module.css';
 import { CSSTransition } from 'react-transition-group';
 import TripDetails from '../TripDetails/TripDetails';
@@ -23,6 +23,9 @@ export interface Filter {
 export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, setFilterKey }: SideBarProps) {
   const [isTrips, setTrips] = useState<boolean>(true);
   const [isStats, setStats] = useState<boolean>(false);
+  const [sortRecent, setSortRecent] = useState<boolean>(true);
+
+  
 
   const getButtonClass = (button: string) => (
     button === (isTrips ? 'trips' : 'stats') ? styles.button_active : styles.button);
@@ -147,8 +150,23 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
                   <input type="text" placeholder="2023" 
                     style={{ width: '13%', textAlign: 'center' }} />
                 </div>
+                <br></br>
+                <div className={styles.sort_back}>
+                    <label>
+                      <b>Sort by Date: </b>
+                    </label>
+                    <select
+                      onChange={() =>
+                        setSortRecent((key) => !key)
+                      }
+                      className={styles.sort_button}
+                    >
+                      <option>↓</option>
+                      <option>↑</option>
+                    </select>
+                </div>
               </div>
-              {filter(trips, filterKey).map((trip: ITrip) => (
+              {sortTrips(filter(trips, filterKey), sortRecent).map((trip: ITrip) => (
                 <TripDetails
                   key={trip.id}
                   isOpen="false"

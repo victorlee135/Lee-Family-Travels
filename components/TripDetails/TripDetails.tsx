@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import Image from 'next/image';
-import { ITrip, getNameString, getNames } from "~/lib/utils";
+import { ITrip, getCountryOrState, getNameString, getNames } from "~/lib/utils";
 import styles from './style.module.css';
 
 export interface Props {
@@ -42,7 +42,11 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
       if (screen.width <= 438) {
         setOpen(false);
       }
-      mapRef.flyTo(markerCoordinates, 10)
+      const currentZoom = mapRef.getZoom();
+        mapRef.flyTo(markerCoordinates, currentZoom, {
+            animate: true,
+            duration: 0.75
+        });
     }
 
     return (
@@ -91,7 +95,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
                       onClick={() => goToMarker(marker.coordinates)}
                       className={styles.listitem}
                     >
-                      {marker.city}, {marker.country}
+                      {marker.city}, {getCountryOrState(marker)}
                     </li>
                   ))}
                 </ol>

@@ -2,10 +2,11 @@ import { LatLngExpression } from "leaflet";
 import { Polyline } from "react-leaflet";
 
 
-
 const CustomPolyline = ({tripId, markers, color, selectedTripIndex}) => {
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
     const isSelected = tripId === selectedTripIndex;
+
+    // nat road trip: gary indiana, des moines, omaha, moab, 
 
     const createPolyline = () => {
         if (coordinates.length < 2) {
@@ -33,7 +34,7 @@ const CustomPolyline = ({tripId, markers, color, selectedTripIndex}) => {
                     lineJoin: 'round',
                 }} />;
           }
-        };
+    };
 
     return (
         <>

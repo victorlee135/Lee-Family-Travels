@@ -35,6 +35,7 @@ export interface IPin {
   lee: Lee[];
   streetview?: string;
   isOpen?: boolean;
+  wayPoint?: boolean;
 }
 
 export interface ITrip {
@@ -45,6 +46,16 @@ export interface ITrip {
   startDate: string;
   endDate: string;
   markers: IPin[];
+  googlePhotos?: string;
+}
+
+export interface IEvent {
+  id: string;
+  eventName: string;
+  author: string;
+  lee: Lee[];
+  date: string;
+  marker: IPin;
   googlePhotos?: string;
 }
 
@@ -138,6 +149,10 @@ export function changeVariables(view: boolean,
     }
   }
 
+  export function sort(trips, sortKey) {
+
+  }
+
   export function filter(trips, filterKey) {
     return trips.filter((trip) => {
       if (filterKey.users.length === 0 ) {
@@ -158,115 +173,191 @@ export function changeVariables(view: boolean,
     });
   }
 
-  export function getVisitedLocations(trips) {
+  export function sortTrips(trips: ITrip[], direction: boolean): ITrip[] {
+    const sortedTrips = trips.slice().sort((a, b) => {
+      const dateA = new Date(a.startDate);
+      const dateB = new Date(b.startDate);
+  
+      if (direction) {
+        // Sort most recent first
+        return dateB.getTime() - dateA.getTime();
+      } else {
+        // Sort oldest first
+        return dateA.getTime() - dateB.getTime();
+      }
+    });
+    return sortedTrips;
+  }
 
-    const locMap = new Map<string, Map<string, number>>([
-      ["countries", new Map<string, number>()],
-      ["states", new Map<string, number>()],
-      ["provinces", new Map<string, number>()],
+  export const specialTrips = new Map<string, string>([
+    ["2", "#1972E4"],
+    ["3", "#A621AC"],
+    ["6", "#A80A0B"],
+    ["7", "#036860"],
+    ["10", "#A200CC"],
+    ["11", "#000C78"]
+  ]);
+
+  export function crossCountryTrips(tripId) {
+    // 2 3 6 7 
+    // 2: Gary indiana, des moines, omaha
+    // 3: gary, omaha, sioux falls, twin falls idaho, reno
+    // 6: gary, omaha, denver, sacramento, san jose, santa cruz, santa barbara
+    // 7: evanston, rock springs, cheyenne, bennington (change to omaha), gary, 
+  }
+
+  export function getVisitedLocations(trips) {
+    const locationMap = new Map<string, string[]>([
+      ["countries", []],
+      ["states", []],
+      ["provinces", [],]
     ]);
+
+    const countrySet = new Set<string>();
+    const stateSet = new Set<string>();
+    const provinceSet = new Set<string>();
 
     trips.forEach((trip) => {
       trip.markers.forEach((marker) => {
         if (marker.country === "United States of America") {
-
-          const statesMap = locMap.get("states");
-          const currStateCount = statesMap.get(marker.state) || 0;
-          statesMap.set(marker.state, currStateCount + 1);
-
+          stateSet.add(marker.state);
         } else if (marker.country === "Canada") {
-
-          const provMap = locMap.get("provinces");
-          const currProvCount = provMap.get(marker.province) || 0;
-          provMap.set(marker.province, currProvCount + 1);
-
+          provinceSet.add(marker.province);
         } else {
-          
-          const countryMap = locMap.get("countries");
-          const currCountryCount = countryMap.get(marker.country) || 0;
-          countryMap.set(marker.country, currCountryCount + 1);
-
+          countrySet.add(marker.country);
         }
       });
     });
 
-    return locMap;
+    locationMap.set("countries", Array.from(countrySet));
+    locationMap.set("states", Array.from(stateSet));
+    locationMap.set("provinces", Array.from(provinceSet));
 
+    return locationMap;
   }
 
-  // have to separate them by frequency first
-  export function createFrequencyRank(locMap) {
-    const initialMap = new Map<string, string[]>([
-      ["countries", []],
-      ["states", []],
-      ["provinces", []],
-    ])
-    const colorRankMap = new Map<number, Map<string, string[]>>([
-      [1, new Map<string, string[]>()],
-      [2, new Map<string, string[]>()],
-      [3, new Map<string, string[]>()],
-      [4, new Map<string, string[]>()],
-      [5, new Map<string, string[]>()],
-    ]);
-    
-    for (const type of locMap.keys()) {
-      const locFreqMap = locMap.get(type);
 
-      for (const location of locFreqMap.keys()) {
-        const rank = Math.min(locFreqMap.get(location), 5);
-
-        let rankMap = colorRankMap.get(rank);
-        if (!rankMap) {
-          rankMap = new Map<string, string[]>();
-          colorRankMap.set(rank, rankMap);
-        }
-
-        const locationList = rankMap.get(type) || [];
-        locationList.push(location);
-
-        rankMap.set(type, locationList);
-
-      }
-    }
-    return colorRankMap;
-  }
-
-  function getGeoData(type, locName) {
-    if (type === "countries") {
-      return countries.features.find(
-        (feature) => locName === feature.properties.name
-      );
-    }
-
-    if (type === "states") {
-      return states.features.find(
-        (feature) => locName === feature.properties.name);
-    }
-
-    if (type === "provinces") {
-      return provinces.features.find(
-        (feature) => locName === feature.properties.name);
-    }
-
-    console.error("Unrecognized type: ", type);
-  }
-
-  export function getGeoDataForLocation(map) {
+  export function getGeoData(map) {
     const visitedData: any = { type: 'FeatureCollection', features: []};
 
     for (const type of map.keys()) {
-
-      const locations = map.get(type);
-
-      for (const location of locations) {
-        const data = getGeoData(type, location);
-        visitedData.features.push(data);
+      for (const location of map.get(type)) {
+        if (type === "countries") {
+          const countryData = countries.features.find(
+            (feature) => location === feature.properties.name
+          );
+          visitedData.features.push(countryData);
+        } else if (type === "states") {
+          const stateData = states.features.find(
+            (feature) => location === feature.properties.name
+          );
+          visitedData.features.push(stateData);
+        } else if (type === "provinces") {
+          const provinceData = provinces.features.find(
+            (feature) => location === feature.properties.name
+          );
+          visitedData.features.push(provinceData);
+        }
       }
-
     }
-
     return visitedData;
   }
+
+  // export function getVisitedLocationsWithCount(trips) {
+
+  //   const locMap = new Map<string, Map<string, number>>([
+  //     ["countries", new Map<string, number>()],
+  //     ["states", new Map<string, number>()],
+  //     ["provinces", new Map<string, number>()],
+  //   ]);
+
+  //   trips.forEach((trip) => {
+  //     trip.markers.forEach((marker) => {
+  //       if (marker.country === "United States of America") {
+
+  //         const statesMap = locMap.get("states");
+  //         const currStateCount = statesMap.get(marker.state) || 0;
+  //         statesMap.set(marker.state, currStateCount + 1);
+
+  //       } else if (marker.country === "Canada") {
+
+  //         const provMap = locMap.get("provinces");
+  //         const currProvCount = provMap.get(marker.province) || 0;
+  //         provMap.set(marker.province, currProvCount + 1);
+
+  //       } else {
+          
+  //         const countryMap = locMap.get("countries");
+  //         const currCountryCount = countryMap.get(marker.country) || 0;
+  //         countryMap.set(marker.country, currCountryCount + 1);
+
+  //       }
+  //     });
+  //   });
+
+  //   return locMap;
+
+  // }
+
+  
+
+  // export function getGeoDataForLocation(map) {
+  //   const visitedData: any = { type: 'FeatureCollection', features: []};
+
+  //   for (const type of map.keys()) {
+
+  //     const locations = map.get(type);
+
+  //     for (const location of locations) {
+  //       const data = getGeoData(type, location);
+  //       visitedData.features.push(data);
+  //     }
+
+  //   }
+
+  //   return visitedData;
+  // }
+
+  // have to separate them by frequency first
+  // export function createFrequencyRank(locMap) {
+  //   const initialMap = new Map<string, string[]>([
+  //     ["countries", []],
+  //     ["states", []],
+  //     ["provinces", []],
+  //   ])
+  //   const colorRankMap = new Map<number, Map<string, string[]>>([
+  //     [1, new Map<string, string[]>()],
+  //     [2, new Map<string, string[]>()],
+  //     [3, new Map<string, string[]>()],
+  //     [4, new Map<string, string[]>()],
+  //     [5, new Map<string, string[]>()],
+  //   ]);
+    
+  //   for (const type of locMap.keys()) {
+  //     const locFreqMap = locMap.get(type);
+
+  //     for (const location of locFreqMap.keys()) {
+  //       const rank = Math.min(locFreqMap.get(location), 5);
+
+  //       let rankMap = colorRankMap.get(rank);
+  //       if (!rankMap) {
+  //         rankMap = new Map<string, string[]>();
+  //         colorRankMap.set(rank, rankMap);
+  //       }
+
+  //       const locationList = rankMap.get(type) || [];
+  //       locationList.push(location);
+
+  //       rankMap.set(type, locationList);
+
+  //     }
+  //   }
+  //   return colorRankMap;
+  // }
+
+  
+
+  
 
   export function getStyleByRank(rank) {
     // FD8D3C
@@ -284,12 +375,23 @@ export function changeVariables(view: boolean,
     } else {
       color = "#cc4400";
     }
+
+    // if (rank === 1) {
+    //   color = "#e6ff99";
+    // } else if (rank === 2) {
+    //   color = "#ffff99";
+    // } else if (rank === 3) {
+    //   color = "#ffe699";
+    // } else if (rank === 4) {
+    //   color = "	#ffcc99";
+    // } else {
+    //   color = "#ffb399";
     return {
       fillColor: color, // Set the fill color for all countries
       weight: 1,
       opacity: 1,
       color: 'grey',
-      fillOpacity: 0.25,
+      fillOpacity: 0.15,
     }
   }
 
@@ -308,15 +410,13 @@ export function changeVariables(view: boolean,
   }
 
 // Good colors
-// color: #231CF6; color: #B51135; #B72210 color: #6136DD; color: #121BA8DE;
-// color: #C1309C;
-// olor: #5C811A; color: #7E38FA; color: #C111AC; color: #591A93;
+//
 
 export function getRandomColor(): string {
   const minContrast = 4.5; // Minimum contrast ratio for AA
   let color = getRandomHexColor();
 
-  while (calculateContrast(color, "#FFFFFF") < minContrast) {
+  while (calculateContrast(color, "#ffe699") < minContrast) {
     color = getRandomHexColor();
   }
 
@@ -364,4 +464,3 @@ function adjustGamma(value: number): number {
     }
     return names.slice(0, size - 1).join(', ') + ' and ' + names[size - 1];
   }
-  

@@ -10,7 +10,6 @@ import { faLocationDot, faMapPin, faFlagCheckered, faCameraRetro } from "@fortaw
 import Image from 'next/image';
 import { useRef } from 'react';
 import styles from './style.module.css';
-import { GrLocationPin } from "react-icons/gr";
 
 
 const Trip = ({tripId, tripName, markers, mapRef, color, selectedTripIndex, setSelectedTripIndex}) => {
@@ -20,7 +19,6 @@ const Trip = ({tripId, tripName, markers, mapRef, color, selectedTripIndex, setS
     
 
     const customMarkerIcon = (index) => {
-        // if marker length is 1, use camera icon
         let icon = faMapPin;
         let x = 6;
         let y = 16;

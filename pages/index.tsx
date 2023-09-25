@@ -10,7 +10,15 @@ import { Filter } from '~/components/Sidebar/Sidebar';
 const Map = dynamic(() => import('../components/Map'), { ssr: false });
 
 
-
+const tripColors = [];
+for (let i = 0; i < TripList.length; i++) {
+  if (specialTrips.has(TripList[i].id)) {
+    tripColors.push(specialTrips.get(TripList[i].id));
+  } else {
+    tripColors.push(getRandomColor());
+  }
+  
+}
 
 
 export default function Home() {
@@ -18,15 +26,7 @@ export default function Home() {
   const [mapRef, setMapRef] = useState(null);
   const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
 
-  const tripColors = [];
-  for (let i = 0; i < TripList.length; i++) {
-    if (specialTrips.has(TripList[i].id)) {
-      tripColors.push(specialTrips.get(TripList[i].id));
-    } else {
-      tripColors.push(getRandomColor());
-    }
-    
-  }
+  
 
   return (
     <div>

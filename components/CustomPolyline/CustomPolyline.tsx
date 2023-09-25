@@ -26,7 +26,7 @@ const CustomPolyline = ({tripId, markers, color, selectedTripIndex}) => {
                 key={"d" + color}
                 positions={coordinates}
                 color={color}
-                weight={2}
+                weight={2.25}
                 fillOpacity={5}
                 pathOptions={{
                     dashArray: [5, 5],

@@ -20,6 +20,7 @@ export default function Stats({ trips } : StatsProps) {
     const statIcons = {
         [EStatKeys.Markers]: <i className="bi bi-geo-alt"></i>,
         [EStatKeys.Cities]: <i className="bi bi-buildings"></i>,
+        [EStatKeys.States]: <i className="bi bi-buildings"></i>,
         [EStatKeys.Countries]: <i className="bi bi-globe-americas"></i>,
         [EStatKeys.Trips]: <i className="bi bi-suitcase2"></i>,
         [EStatKeys.Distance]: <i className="bi bi-signpost-fill"></i>,

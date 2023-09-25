@@ -85,7 +85,7 @@ export const TripList: ITrip[] = [
     addTrip('17', "Forest 2022", "Victor Lee", [Lee.Victor], 
     "June 22, 2022", "June 26, 2022", FOREST_PICS, "https://testHawaii.com"),
 
-    addTrip('18', "Windsor", "Victor Lee", [Lee.Victor], 
+    addTrip('18', "Universal Studios", "Victor Lee", [Lee.Victor, Lee.Phil], 
     "Dec 21, 2020", "Dec 26, 2020", UNIVERSAL_PICS, "https://testHawaii.com"),
 
     addTrip('19', "Higgins Lake", "Victor Lee", [Lee.Victor], 

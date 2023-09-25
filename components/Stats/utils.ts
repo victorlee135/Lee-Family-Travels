@@ -8,6 +8,7 @@ import styles from './style.module.css';
 export enum EStatKeys {
     Markers = 'Markers',
     Cities = 'Cities',
+    States = 'States',
     Countries = 'Countries',
     Trips = 'Trips',
     Distance = 'Distance'
@@ -28,6 +29,7 @@ export interface User {
 export interface UserStats {
     markers: number;
     cities: Set<string>;
+    states: Set<string>;
     countries: Set<string>;
     numTrips: number;
     coordinates: [[number, number]];
@@ -76,9 +78,9 @@ export function makeStats(inputTrips: ITrip[], type: string) {
     const trips = inputTrips.slice();
 
     const allUserStats = new Map<Lee, UserStats>([
-        [Lee.Victor, {markers: 0, cities: new Set(), countries: new Set(), numTrips: 0, coordinates: [[0, 0]]}],
-        [Lee.Phil, {markers: 0, cities: new Set(), countries: new Set(), numTrips: 0, coordinates: [[0, 0]]}],
-        [Lee.Bumo, {markers: 0, cities: new Set(), countries: new Set(), numTrips: 0, coordinates: [[0, 0]]}],
+        [Lee.Victor, {markers: 0, cities: new Set(), states: new Set(), countries: new Set(), numTrips: 0, coordinates: [[0, 0]]}],
+        [Lee.Phil, {markers: 0, cities: new Set(), states: new Set(), countries: new Set(), numTrips: 0, coordinates: [[0, 0]]}],
+        [Lee.Bumo, {markers: 0, cities: new Set(), states: new Set(), countries: new Set(), numTrips: 0, coordinates: [[0, 0]]}],
     ])
     
     for (var i = 0; i < trips.length; i++) {
@@ -92,6 +94,10 @@ export function makeStats(inputTrips: ITrip[], type: string) {
                 const city = trips[i].markers[k].city;
                 const country = trips[i].markers[k].country;
                 const coordinates = trips[i].markers[k].coordinates;
+                if (country === "United States of America") {
+                    const state = trips[i].markers[k].state;
+                    userStats.states.add(state);
+                }
                 
                 userStats.markers += 1;
                 userStats.cities.add(city);
@@ -111,6 +117,10 @@ export function makeStats(inputTrips: ITrip[], type: string) {
             }
             case 'Cities': {
                 acc += stats.cities.size
+                break;
+            }
+            case 'States': {
+                acc += stats.states.size
                 break;
             }
             case 'Countries': {

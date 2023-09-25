@@ -49,7 +49,7 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
           key={trip.id} 
           tripId={trip.id}
           tripName={trip.tripName}
-          markers={trip.markers} 
+          inputMarkers={trip.markers} 
           mapRef={mapRef} 
           color={color}
           selectedTripIndex={selectedTripIndex}

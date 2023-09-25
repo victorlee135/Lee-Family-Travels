@@ -90,13 +90,15 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
               {showMarkersList && (
                 <ol className={styles.prettylist}>
                   {markers.map((marker, index) => (
-                    <li 
-                      key={index}
-                      onClick={() => goToMarker(marker.coordinates)}
-                      className={styles.listitem}
-                    >
-                      {marker.city}, {getCountryOrState(marker)}
-                    </li>
+                    (!marker.wayPoint || marker.wayPoint === false) && (
+                      <li 
+                        key={index}
+                        onClick={() => goToMarker(marker.coordinates)}
+                        className={styles.listitem}
+                      >
+                        {marker.city}, {getCountryOrState(marker)}
+                      </li>
+                    )
                   ))}
                 </ol>
               )}

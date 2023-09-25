@@ -34,12 +34,12 @@ export const EUR_PICS: IPin[] = [
 // Calgary -> Canmore -> Banff -> Lake Monroe -> Lake Moraine -> Peyto Lake -> Eureka
 export const BANFF_PICS: IPin[] = [
   addPin('Victor Lee', [Lee.Victor], 'Calgary', null, 'Alberta', 'Canada', [51.0447, -114.0719], '2023-08-18', '/images/nice.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Canmore', null, 'Alberta', 'Canada', [51.0884, -115.3479], '2023-08-18', '/images/frejus.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Banff', null, 'Alberta', 'Canada', [51.1784, -115.5708], '2023-08-18', '/images/mountain.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Lake Louise', null, 'Alberta', 'Canada', [51.4254, -116.1773], '2023-08-19', '/images/montpellier.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Lake Moraine', null, 'Alberta', 'Canada', [51.3217, -116.1860], '2023-08-19', '/images/ibiza.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Peyto Lake', null, 'British Columbia', 'Canada', [51.7255, -116.5227], '2023-08-19', '/images/barcelona.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Eureka', 'Montana', null, 'United States of America', [48.8800, -115.0535], '2023-08-20', '/images/porto.jpeg')
+  addPin('Victor Lee', [Lee.Victor], 'Canmore', null, 'Alberta', 'Canada', [51.0884, -115.3479], '2023-08-18', '/images/frejus.jpeg', true),
+  addPin('Victor Lee', [Lee.Victor], 'Banff', null, 'Alberta', 'Canada', [51.1784, -115.5708], '2023-08-18', '/images/banff/banff.jpg'),
+  addPin('Victor Lee', [Lee.Victor], 'Lake Louise', null, 'Alberta', 'Canada', [51.4254, -116.1773], '2023-08-19', '/images/banff/louis.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Lake Moraine', null, 'Alberta', 'Canada', [51.3217, -116.1860], '2023-08-19', '/images/banff/moraine.jpg'),
+  addPin('Victor Lee', [Lee.Victor], 'Peyto Lake', null, 'British Columbia', 'Canada', [51.7255, -116.5227], '2023-08-19', '/images/banff/peyto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Eureka', 'Montana', null, 'United States of America', [48.8800, -115.0535], '2023-08-20', '/images/banff/eureka.jpeg')
 ];
 
 
@@ -74,12 +74,12 @@ export const ROADTRIP_PICS: IPin[] = [
   addPin('Victor Lee', [Lee.Victor], 'Denver', 'Colorado', null, 'United States of America', [39.7392, -104.9903], '2023-08-20', '/images/porto.jpeg'),
   addPin('Victor Lee', [Lee.Victor], 'Boulder', 'Colorado', null, 'United States of America', [40.0150, -105.2705], '2023-08-20', '/images/porto.jpeg'),
   addPin('Victor Lee', [Lee.Victor], 'Moab', 'Utah', null, 'United States of America', [38.5733, -109.5498], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Arches National Park', 'Utah', null, 'United States of America', [38.7331, -109.5925], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Bryce Canyon National Park', 'Utah', null, 'United States of America', [37.5930, -112.1871], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Horseshoe Bend', 'Arizona', null, 'United States of America', [36.8750, -111.5100], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Antelope Canyon', 'Arizona', null, 'United States of America', [36.8619, -111.3743], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Lake Powell', 'Arizona', null, 'United States of America', [37.0683, -111.2433], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Zion National Park', 'Utah', null, 'United States of America', [37.2982, -113.0263], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Arches National Park', 'Utah', null, 'United States of America', [38.7331, -109.5925], '2023-08-20', '/images/national_park_trip/arches.JPG'),
+  addPin('Victor Lee', [Lee.Victor], 'Bryce Canyon National Park', 'Utah', null, 'United States of America', [37.5930, -112.1871], '2023-08-20', '/images/national_park_trip/bryce.JPG'),
+  addPin('Victor Lee', [Lee.Victor], 'Horseshoe Bend', 'Arizona', null, 'United States of America', [36.8750, -111.5100], '2023-08-20', '/images/national_park_trip/horseshoe.JPG'),
+  addPin('Victor Lee', [Lee.Victor], 'Antelope Canyon', 'Arizona', null, 'United States of America', [36.8619, -111.3743], '2023-08-20', '/images/national_park_trip/antelope.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Lake Powell', 'Arizona', null, 'United States of America', [37.0683, -111.2433], '2023-08-20', '/images/national_park_trip/lakepowell.JPG'),
+  addPin('Victor Lee', [Lee.Victor], 'Zion National Park', 'Utah', null, 'United States of America', [37.2982, -113.0263], '2023-08-20', '/images/national_park_trip/zion.JPG'),
   addPin('Victor Lee', [Lee.Victor], 'Las Vegas', 'Nevada', null, 'United States of America', [36.1699, -115.1398], '2023-08-20', '/images/porto.jpeg'),
   addPin('Victor Lee', [Lee.Victor], 'Carlsbad', 'California', null, 'United States of America', [33.1581, -117.3506], '2023-08-20', '/images/porto.jpeg')
 ];
@@ -91,13 +91,14 @@ export const COVIDROAD_PICS: IPin[] = [
   addPin('Victor Lee', [Lee.Victor], 'Des Moines', 'Iowa', null, 'United States of America', [41.6868, -93.7250], '2023-08-20', '/images/porto.jpeg', true),
   addPin('Victor Lee', [Lee.Victor], 'Sioux Falls', 'South Dakota', null, 'United States of America', [43.5446, -96.7311], '2023-08-20', '/images/porto.jpeg', true),
   addPin('Victor Lee', [Lee.Victor], 'Badlands National Park', 'Iowa', null, 'United States of America', [43.8405, -102.3733], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Yellowstone National Park', 'Wyoming', null, 'United States of America', [44.4279, -110.5885], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Grand Tetons National Park', 'Wyoming', null, 'United States of America', [43.7904, -110.6818], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Yellowstone National Park', 'Wyoming', null, 'United States of America', [44.4279, -110.5885], '2023-08-20', '/images/covid_road_trip/yellowstone_rainbow.JPG'),
+  addPin('Victor Lee', [Lee.Victor], 'Grand Tetons National Park', 'Wyoming', null, 'United States of America', [43.7904, -110.6818], '2023-08-20', '/images/covid_road_trip/tetons.JPG'),
   addPin('Victor Lee', [Lee.Victor], 'Twin Falls', 'Idaho', null, 'United States of America', [42.5558, -114.4701], '2023-08-20', '/images/porto.jpeg', true),
   addPin('Victor Lee', [Lee.Victor], 'Reno', 'California', null, 'United States of America', [39.5296, -119.8138], '2023-08-20', '/images/porto.jpeg', true),
-  addPin('Victor Lee', [Lee.Victor], 'Yosemite National Park', 'California', null, 'United States of America', [37.8651, -119.5383], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Yosemite National Park', 'California', null, 'United States of America', [37.8651, -119.5383], '2023-08-20', '/images/covid_road_trip/yosemite.jpeg'),
   addPin('Victor Lee', [Lee.Victor], 'Los Angeles', 'California', null, 'United States of America', [34.0597, -118.3009], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Las Vegas', 'Nevada', null, 'United States of America', [36.1212, -115.1697], '2023-08-20', '/images/porto.jpeg')
+  addPin('Victor Lee', [Lee.Victor], 'Las Vegas', 'Nevada', null, 'United States of America', [36.1212, -115.1697], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Zion National Park', 'Utah', null, 'United States of America', [37.2982, -112.6263], '2023-08-20', '/images/covid_road_trip/zion.jpg'),
 ];
 
 export const HAWAII_PICS: IPin[] = [
@@ -138,10 +139,10 @@ export const COVID_MOVING_PICS: IPin[] = [
 
 export const SKIROADTRIP_PICS: IPin[] = [
   addPin('Victor Lee', [Lee.Victor], 'Sawtelle - Los Angeles', 'California', null, 'United States of America', [34.0421, -118.4695], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Las Vegas', 'Nevada', null, 'United States of America', [36.1215, -115.1704], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Las Vegas', 'Nevada', null, 'United States of America', [36.1215, -115.1704], '2023-08-20', '/images/slc2023/vegas.jpeg'),
   addPin('Victor Lee', [Lee.Victor], 'Murray', 'Utah', null, 'United States of America', [40.6669, -111.8879], '2023-08-20', '/images/porto.jpeg', true),
-  addPin('Victor Lee', [Lee.Victor], 'Mt Brighton', 'Utah', null, 'United States of America', [40.5867, -111.6192], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor], 'Park City', 'Utah', null, 'United States of America', [40.6461, -111.4979], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Mt Brighton', 'Utah', null, 'United States of America', [40.5867, -111.6192], '2023-08-20', '/images/slc2023/brighton.jpeg'),
+  addPin('Victor Lee', [Lee.Victor], 'Park City', 'Utah', null, 'United States of America', [40.6461, -111.4979], '2023-08-20', '/images/slc2023/parkcity.jpeg'),
   addPin('Victor Lee', [Lee.Victor], 'Evanston', 'Wyoming', null, 'United States of America', [41.2683, -110.9632], '2023-08-20', '/images/porto.jpeg', true),
   addPin('Victor Lee', [Lee.Victor], 'Rock Springs', 'Wyoming', null, 'United States of America', [41.5875, -109.2029], '2023-08-20', '/images/porto.jpeg', true),
   addPin('Victor Lee', [Lee.Victor], 'Cheyenne', 'Wyoming', null, 'United States of America', [41.1399, -104.8202], '2023-08-20', '/images/porto.jpeg', true),
@@ -183,10 +184,10 @@ export const SEATTLE_CAMP_PICS: IPin[] = [
 
 export const PHIL_BDAY_GORGE_PICS: IPin[] = [
   addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Tacoma Airport', 'Washington', null, 'United States of America', [47.2529, -122.3443], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Druids Glen Golf Course', 'Washington', null, 'United States of America', [47.2973, -122.1281], '2023-08-20', '/images/porto.jpeg'),
+  addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Druids Glen Golf Course', 'Washington', null, 'United States of America', [47.2973, -122.1281], '2023-08-20', '/images/seattle_gorge/golf2.jpg'),
   addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Keechelus Lake', 'Washington', null, 'United States of America', [47.2924, -121.3011], '2023-08-20', '/images/porto.jpeg'),
   addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Cle Elum', 'Washington', null, 'United States of America', [47.1954, -120.9398], '2023-08-20', '/images/porto.jpeg'),
-  addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Gorge Amphitheater', 'Washington', null, 'United States of America', [47.0067, -119.9972], '2023-08-20', '/images/porto.jpeg')
+  addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Gorge Amphitheater', 'Washington', null, 'United States of America', [47.0067, -119.9972], '2023-08-20', '/images/seattle_gorge/gorge_me_phil.JPG')
 ];
 
 

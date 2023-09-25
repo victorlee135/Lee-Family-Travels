@@ -12,7 +12,8 @@ import { useRef } from 'react';
 import styles from './style.module.css';
 
 
-const Trip = ({tripId, tripName, markers, mapRef, color, selectedTripIndex, setSelectedTripIndex}) => {
+const Trip = ({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex, setSelectedTripIndex}) => {
+    const markers = inputMarkers.filter((marker) => !marker.wayPoint);
     const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
     const markerRefs = useRef([]);
     const isSingleEvent = markers.length === 1;
@@ -80,56 +81,54 @@ const Trip = ({tripId, tripName, markers, mapRef, color, selectedTripIndex, setS
         <>
             {/* Render PhotoMarkers */}
             {markers.map((marker, index) => (
-                !marker.wayPoint ? (
-                    <Marker 
-                        key={index}
-                        icon={customMarkerIcon(index)} 
-                        position={marker.coordinates} 
-                        title={`${marker.author} at ${marker.city}`}
-                        ref={(ref) => (markerRefs.current[index] = ref)}
-                        eventHandlers={{
-                            click: () => {selectTrip()},
-                        }}
-                    >
-                        <Popup autoClose={true}>
-                            <div>
-                                <div className={styles.text}>
-                                    <h1 className={styles.h1}>
-                                        {marker.city}, {getCountryOrState(marker)}
-                                    </h1>
-                                    <span className={styles.test}>
-                                        <i className="bi bi-info-circle"></i> {tripName}
-                                    </span>
-                                    <br />
-                                    <span className={styles.light}>
-                                        <i className="bi bi-calendar"></i> {getFullDateString(marker.date)} (
-                                        {getRelativeTimeString(marker.date)})
-                                    </span>
-                                    <br />
-                                    <span><i className="bi bi-person-fill"></i> {marker.author}</span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <span><i className="bi bi-people-fill"></i> others </span>
-                                    <br />
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {!isSingleEvent && (
-                                        <>
-                                            <button className={styles.button} onClick={() => goToPreviousMarker(index)}>Prev</button>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button className={styles.button}onClick={() => goToNextMarker(index)}>Next</button>
-                                        </>
-                                    )}
-                                    
-                                </div>
-                                <Image
-                                    alt={`${marker.author} at ${marker.city}`}
-                                    src={marker.photo}
-                                    fill
-                                    className={styles.image}
-                                />
+                <Marker 
+                    key={index}
+                    icon={customMarkerIcon(index)} 
+                    position={marker.coordinates} 
+                    title={`${marker.author} at ${marker.city}`}
+                    ref={(ref) => (markerRefs.current[index] = ref)}
+                    eventHandlers={{
+                        click: () => {selectTrip()},
+                    }}
+                >
+                    <Popup autoClose={true}>
+                        <div>
+                            <div className={styles.text}>
+                                <h1 className={styles.h1}>
+                                    {marker.city}, {getCountryOrState(marker)}
+                                </h1>
+                                <span className={styles.test}>
+                                    <i className="bi bi-info-circle"></i> {tripName}
+                                </span>
+                                <br />
+                                <span className={styles.light}>
+                                    <i className="bi bi-calendar"></i> {getFullDateString(marker.date)} (
+                                    {getRelativeTimeString(marker.date)})
+                                </span>
+                                <br />
+                                <span><i className="bi bi-person-fill"></i> {marker.author}</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span><i className="bi bi-people-fill"></i> others </span>
+                                <br />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {!isSingleEvent && (
+                                    <>
+                                        <button className={styles.button} onClick={() => goToPreviousMarker(index)}>Prev</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button className={styles.button}onClick={() => goToNextMarker(index)}>Next</button>
+                                    </>
+                                )}
+                                
                             </div>
-                        </Popup>
-                </Marker>
-                ) : null
+                            <Image
+                                alt={`${marker.author} at ${marker.city}`}
+                                src={marker.photo}
+                                fill
+                                className={styles.image}
+                            />
+                        </div>
+                    </Popup>
+            </Marker>
             ))}
         </>
     );

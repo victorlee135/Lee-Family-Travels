@@ -36,7 +36,6 @@ export default function Sidebar({ trips, isOpen, setOpen, mapRef, filterKey, set
 
   const onClick = (type) => {
     const updatedUsers = filterKey.users.filter((user) => user !== Lee.All);
-    
     if (type === 'All') {
       setFilterKey({ users: [Lee.All] });
     } else {

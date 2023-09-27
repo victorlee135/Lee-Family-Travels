@@ -2,14 +2,9 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
 
 import Trip from '../Trip';
-import { ITrip, filter, getGeoData, getStyleByRank, getVisitedLocations } from '../../lib';
+import { ITrip, filter, getGeoData, getVisitedLocations } from '../../lib';
 import { Filter } from '../Sidebar/Sidebar';
 import { useMemo, useState } from 'react';
-import CustomPolyline from '../CustomPolyline/CustomPolyline';
-import MarkerClusterGroup from 'react-leaflet-cluster';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 
 export const createClusterCustomIcon = function (cluster) {
@@ -33,7 +28,8 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
     return null;
   };
 
-  const [selectedTripIndex, setSelectedTripIndex] = useState(-1);
+
+  const [selectedTripIndex, setSelectedTripIndex] = useState("-1");
 
   const filteredTrips = filter(trips, filterKey);
 
@@ -41,30 +37,19 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
     const components = [];
 
     for (let i = 0; i < filteredTrips.length; i++) {
-
       const trip = filteredTrips[i];
-      const color = tripColors[trip.id];
+      const color = tripColors[parseInt(trip.id) - 1];
       components.push(
         <Trip 
           key={trip.id} 
           tripId={trip.id}
-          tripName={trip.tripName}
-          inputMarkers={trip.markers} 
+          tripName={trip.name}
+          inputMarkers={filteredTrips[i].markers}
           mapRef={mapRef} 
           color={color}
           selectedTripIndex={selectedTripIndex}
           setSelectedTripIndex={setSelectedTripIndex} />
       );
-
-      components.push(
-        <CustomPolyline
-          key={"poly" + trip.id}
-          tripId={trip.id}
-          markers={trip.markers}
-          color={color}
-          selectedTripIndex={selectedTripIndex} />
-      );
-
       
     }
     return components;
@@ -101,14 +86,6 @@ export default function Map({ trips, tripColors, mapRef, setMapRef, filterKey }:
     >
       <Ref></Ref>
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-      {/* <MarkerClusterGroup
-          iconCreateFunction={createClusterCustomIcon}
-          showCoverageOnHover={false}
-          maxClusterRadius={10}
-        >
-          {geoLayerComponents}
-          {tripComponents}
-      </MarkerClusterGroup> */}
       {geoLayerComponents}
       {tripComponents}
       

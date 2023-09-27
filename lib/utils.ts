@@ -33,20 +33,19 @@ export interface IPin {
   date: string;
   photo: string;
   lee: Lee[];
-  streetview?: string;
   isOpen?: boolean;
   wayPoint?: boolean;
 }
 
 export interface ITrip {
   id: string;
-  tripName: string;
+  name: string;
   author: string;
   lee: Lee[];
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
   markers: IPin[];
-  googlePhotos?: string;
+  google_photos?: string;
 }
 
 export interface IEvent {
@@ -175,8 +174,8 @@ export function changeVariables(view: boolean,
 
   export function sortTrips(trips: ITrip[], direction: boolean): ITrip[] {
     const sortedTrips = trips.slice().sort((a, b) => {
-      const dateA = new Date(a.startDate);
-      const dateB = new Date(b.startDate);
+      const dateA = new Date(a.start_date);
+      const dateB = new Date(b.start_date);
   
       if (direction) {
         // Sort most recent first
@@ -190,21 +189,13 @@ export function changeVariables(view: boolean,
   }
 
   export const specialTrips = new Map<string, string>([
-    ["2", "#1972E4"],
-    ["3", "#A621AC"],
-    ["6", "#A80A0B"],
-    ["7", "#036860"],
-    ["10", "#A200CC"],
-    ["11", "#000C78"]
+    ["3", "#1972E4"],
+    ["4", "#A621AC"],
+    ["8", "#A80A0B"],
+    ["9", "#036860"],
+    ["11", "#A200CC"],
+    ["12", "#000C78"]
   ]);
-
-  export function crossCountryTrips(tripId) {
-    // 2 3 6 7 
-    // 2: Gary indiana, des moines, omaha
-    // 3: gary, omaha, sioux falls, twin falls idaho, reno
-    // 6: gary, omaha, denver, sacramento, san jose, santa cruz, santa barbara
-    // 7: evanston, rock springs, cheyenne, bennington (change to omaha), gary, 
-  }
 
   export function getVisitedLocations(trips) {
     const locationMap = new Map<string, string[]>([

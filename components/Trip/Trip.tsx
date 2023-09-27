@@ -2,22 +2,43 @@
 // Contains trip details, such as the trip name, date, or destination.
 // Communicates with the Map Component to display trip-specific markers and arrows.
 import L, { LatLngExpression } from 'leaflet';
-import { Marker, Popup } from 'react-leaflet';
-import { getCountryOrState, getFullDateString, getRelativeTimeString } from '../../lib';
+import { Marker, Popup, Polyline } from 'react-leaflet';
+import { IPin, getCountryOrState, getFullDateString, getRelativeTimeString } from '../../lib';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { renderToStaticMarkup } from 'react-dom/server';
 import { faLocationDot, faMapPin, faFlagCheckered, faCameraRetro } from "@fortawesome/free-solid-svg-icons";
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.css';
 
+export interface TripProps {
+    tripId: string;
+    tripName: string;
+    inputMarkers: IPin[];
+    mapRef: any;
+    color: string;
+    selectedTripIndex: string;
+    setSelectedTripIndex: Function;
+  }
 
-const Trip = ({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex, setSelectedTripIndex}) => {
-    const markers = inputMarkers.filter((marker) => !marker.wayPoint);
-    const coordinates: LatLngExpression[] = markers.map((marker) => marker.coordinates);
+
+export default function Trip({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex, setSelectedTripIndex} : TripProps) {
+    const markers = []
+    const fileNames = []
+    const coordinates: LatLngExpression[] = []
+    const polyCoordinates: LatLngExpression[] = []
+    for (let i = 0; i < inputMarkers.length; i++) {
+        if (!inputMarkers[i].wayPoint) {
+            markers.push(inputMarkers[i]);
+            fileNames.push(inputMarkers[i].photo.split("/")[2]);
+            coordinates.push(inputMarkers[i].coordinates);
+        }
+        polyCoordinates.push(inputMarkers[i].coordinates);
+    }
+
     const markerRefs = useRef([]);
     const isSingleEvent = markers.length === 1;
-    
+    let isSelected = tripId === selectedTripIndex;
 
     const customMarkerIcon = (index) => {
         let icon = faMapPin;
@@ -40,6 +61,34 @@ const Trip = ({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex,
             iconAnchor: [x, y]
         });
     };
+
+    const createPolyline = () => {
+        if (polyCoordinates.length < 2) {
+            return null;
+        }
+
+        
+          if (isSelected) {
+            return <Polyline 
+                key={"h" + color}
+                positions={polyCoordinates}
+                color={color}
+                weight={3.5}
+                fillOpacity={5} />;
+          } else {  
+            return <Polyline 
+                key={"d" + color}
+                positions={polyCoordinates}
+                color={color}
+                weight={2.25}
+                fillOpacity={5}
+                pathOptions={{
+                    dashArray: [5, 5],
+                    lineCap: 'round',
+                    lineJoin: 'round',
+                }} />;
+          }
+    };
         
 
     const goToNextMarker = (index) => {
@@ -55,6 +104,7 @@ const Trip = ({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex,
     const selectTrip = () => {
         if (selectedTripIndex !== tripId) {
             setSelectedTripIndex(tripId);
+            console.log(selectedTripIndex);
         }
         
     }
@@ -130,8 +180,7 @@ const Trip = ({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex,
                     </Popup>
             </Marker>
             ))}
+            {createPolyline()}
         </>
     );
 };
-
-export default Trip;

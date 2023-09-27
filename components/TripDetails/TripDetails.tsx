@@ -64,7 +64,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
           <div className={styles.text}>
             <p className={styles.paragraph}>
               <span className={styles.title} onClick={toggleMarkersList} title="Go to pin">
-                {trip.tripName}
+                {trip.name}
               </span>
             </p>
             <p className={styles.paragraph}>
@@ -74,7 +74,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
             </p>
             <p className={styles.paragraph}>
               <span className={styles.light}>
-                <i className="bi bi-clock"></i> {trip.startDate} - {trip.endDate}
+                <i className="bi bi-clock"></i> {trip.start_date} - {trip.end_date}
               </span>
             </p>
             <p className={styles.paragraph}>
@@ -84,7 +84,7 @@ const TripDetails = ({trip, isOpen, setOpen, mapRef}) => {
             </p>
             <p className={styles.paragraph}>
               <span className={styles.authors}>
-                <i className="bi bi-google"></i> {trip.googlePhotos}
+                <i className="bi bi-google"></i> {trip.google_photos}
               </span>
             </p>
               {showMarkersList && (

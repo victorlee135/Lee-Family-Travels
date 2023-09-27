@@ -190,43 +190,52 @@ export const PHIL_BDAY_GORGE_PICS: IPin[] = [
   addPin('Victor Lee', [Lee.Victor, Lee.Phil], 'Gorge Amphitheater', 'Washington', null, 'United States of America', [47.0067, -119.9972], '2023-08-20', '/images/seattle_gorge/gorge_me_phil.JPG')
 ];
 
-
+// trip_id=13
 export const SOUTH_PADRE_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "South Padre Island", "Texas", 
     null, "United States of America", [26.1118, -97.1681], '2023-08-20', '/images/porto.jpeg')
 ]
 
+// trip_id=15
 export const FORT_MYERS_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Fort Myers", "Florida", null, "United States of America", [26.6406, -81.8723], '2023-08-20', '/images/porto.jpeg'),
 ]
 
+// trip_id=14
 export const FORT_LAUDERDALE_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Fort Lauderdale", "Florida", null, "United States of America", [26.1224, -80.1373], '2023-08-20', '/images/porto.jpeg'),
 ]
 
+// trip_id=16
 export const WINDSOR_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Windsor", null, "Ontario", "Canada", [42.3149, -83.0364], '2023-08-20', '/images/porto.jpeg'),
 ]
 
+// trip_id=17
 export const OKEECHOBEE_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Okeechobee", "Florida", null, "United States of America", [27.2439, -80.8298], '2023-08-20', '/images/porto.jpeg'),
 ]
 
+// trip_id=18
 export const FOREST_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Rothbury", "Michigan", null, "United States of America", [43.6727, -86.2401], '2023-08-20', '/images/porto.jpeg'),
 ]
 
+// trip_id=19
 export const UNIVERSAL_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Universal Studios Orlando", "Florida", null, "United States of America", [28.4744, -81.4679], '2023-08-20', '/images/porto.jpeg'),
+]
+
+// trip_id=20
+export const HIGGINS_LAKE_PICS: IPin[] = [
+  addPin("Victor Lee", [Lee.Victor], "Higgins Lake", "Michigan", null, "United States of America", [44.5059, -84.7658], '2023-08-20', '/images/porto.jpeg')
 ]
 
 export const CEDAR_POINT_PICS: IPin[] = [
   addPin("Victor Lee", [Lee.Victor], "Cedar Point", "Ohio", null, "United States of America", [41.4819, -82.6836], '2023-08-20', '/images/porto.jpeg'),
 ]
 
-export const HIGGINS_LAKE_PICS: IPin[] = [
-  addPin("Victor Lee", [Lee.Victor], "Higgins Lake", "Michigan", null, "United States of America", [44.5059, -84.7658], '2023-08-20', '/images/porto.jpeg')
-]
+
 
 
 

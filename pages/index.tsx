@@ -1,66 +1,67 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import { TripList } from '~/data/triplist';
-import Sidebar from '../components/Sidebar';
-import Menu from '../components/Menu';
+import React, { useEffect, useState } from 'react';
 import { Lee, getRandomColor, specialTrips } from '~/lib/utils';
-import { Filter } from '~/components/Sidebar/Sidebar';
-
-const Map = dynamic(() => import('../components/Map'), { ssr: false });
-
-
-const tripColors = [];
-for (let i = 0; i < TripList.length; i++) {
-  if (specialTrips.has(TripList[i].id)) {
-    tripColors.push(specialTrips.get(TripList[i].id));
-  } else {
-    tripColors.push(getRandomColor());
-  }
-  
-}
-
+import App from '~/components/App/App';
 
 export default function Home() {
-  const [isOpen, setOpen] = useState<boolean>(false);
-  const [mapRef, setMapRef] = useState(null);
-  const [filterKey, setFilterKey] = useState<Filter>({ users: [Lee.All] });
+  const [jsonTrips, setTrips] = useState([]);
 
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/api/trips/markers')
+      .then((response) => response.json())
+      .then((data) => {
+        setTrips(data.tripData);
+        console.log("Called API");
+      })
+      .catch((error) => {
+        console.error('Error fetching trips:', error);
+      });
+  }, []); // useEffect with empty array ensures code inside only runs once
+
+  if (jsonTrips.length === 0) {
+    return null;
+  }
   
-
+  const trips = jsonTrips.map((tripData) => ({
+      id: tripData.id.toString(),
+      name: tripData.name,
+      author: tripData.author,
+      lee: tripData.lee,
+      start_date: tripData.start_date,
+      end_date: tripData.end_date,
+      markers: tripData.markers.map((marker) => ({
+          author: marker.author[0],
+          city: marker.city,
+          state: marker.state || '',
+          province: marker.province || '',
+          country: marker.country,
+          coordinates: marker.coordinates
+            .replace('(', '')
+            .replace(')', '')
+            .split(',')
+            .map((coord) => parseFloat(coord.trim())),
+          date: marker.date,
+          photo: marker.photoUrl,
+          lee: marker.lee,
+          streetview: marker.streetview || '',
+          isOpen: marker.isOpen || false,
+          wayPoint: marker.waypoint || false
+      })),
+      google_photos: tripData.google_photos
+    })
+  );
+  
+  const tripColors = [];
+  for (let i = 0; i < trips.length; i++) {
+    if (specialTrips.has(trips[i].id)) {
+      tripColors.push(specialTrips.get(trips[i].id));
+    } else {
+      tripColors.push(getRandomColor());
+    }
+  }
+    
   return (
     <div>
-      <Head>
-        <title>Lee Family Travels</title>
-        <meta
-          name="description"
-          content="A world map with the places we've been"
-          key="description"
-        />
-      </Head>
-      <Menu isOpen={isOpen} setOpen={setOpen} />
-      <Sidebar
-        mapRef={mapRef}
-        isOpen={isOpen}
-        setOpen={setOpen}
-        trips={TripList}
-        filterKey={filterKey}
-        setFilterKey={setFilterKey}
-      />
-      <div className="map">
-          <Map 
-            mapRef={mapRef} 
-            setMapRef={setMapRef} 
-            trips={TripList} 
-            tripColors={tripColors}
-            filterKey={filterKey} />
-          {/* <GMap 
-            mapRef={mapRef} 
-            setMapRef={setMapRef} 
-            trips={TripList} 
-            tripColors={tripColors}
-            filterKey={filterKey} /> */}
-      </div>
+      <App trips={trips} tripColors={tripColors}></App>
     </div>
   );
 }

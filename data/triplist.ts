@@ -20,11 +20,11 @@ import { EUR_PICS, BANFF_PICS, ASIA_PICS, ROADTRIP_PICS, COVIDROAD_PICS, HAWAII_
 const addTrip = (id, tripName, author, lee, startDate, endDate, markers, googlePhotos) => {
   return {
     id: id,
-    tripName: tripName,
+    name: tripName,
     author: author,
     lee: lee,
-    startDate: startDate,
-    endDate: endDate,
+    start_date: startDate,
+    end_date: endDate,
     markers: markers,
     googlePhotos: googlePhotos
   }

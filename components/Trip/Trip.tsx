@@ -1,6 +1,3 @@
-// Represents a single trip within the TripList.
-// Contains trip details, such as the trip name, date, or destination.
-// Communicates with the Map Component to display trip-specific markers and arrows.
 import L, { LatLngExpression } from 'leaflet';
 import { Marker, Popup, Polyline } from 'react-leaflet';
 import { IPin, getCountryOrState, getFullDateString, getRelativeTimeString } from '../../lib';
@@ -10,6 +7,8 @@ import { faLocationDot, faMapPin, faFlagCheckered, faCameraRetro } from "@fortaw
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.css';
+import axios from 'axios'; 
+import Photo from '../Photo/Photo';
 
 export interface TripProps {
     tripId: string;
@@ -23,22 +22,23 @@ export interface TripProps {
 
 
 export default function Trip({tripId, tripName, inputMarkers, mapRef, color, selectedTripIndex, setSelectedTripIndex} : TripProps) {
+    const isSelected = tripId === selectedTripIndex;
     const markers = []
-    const fileNames = []
     const coordinates: LatLngExpression[] = []
     const polyCoordinates: LatLngExpression[] = []
+    const markerRefs = useRef([]);
+    
     for (let i = 0; i < inputMarkers.length; i++) {
         if (!inputMarkers[i].wayPoint) {
             markers.push(inputMarkers[i]);
-            fileNames.push(inputMarkers[i].photo.split("/")[2]);
             coordinates.push(inputMarkers[i].coordinates);
         }
         polyCoordinates.push(inputMarkers[i].coordinates);
     }
-
-    const markerRefs = useRef([]);
+   
+    
     const isSingleEvent = markers.length === 1;
-    let isSelected = tripId === selectedTripIndex;
+
 
     const customMarkerIcon = (index) => {
         let icon = faMapPin;
@@ -63,30 +63,18 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
     };
 
     const createPolyline = () => {
+        
         if (polyCoordinates.length < 2) {
             return null;
         }
-
         
           if (isSelected) {
-            return <Polyline 
-                key={"h" + color}
-                positions={polyCoordinates}
-                color={color}
-                weight={3.5}
-                fillOpacity={5} />;
+            return <Polyline key={"h" + color} positions={polyCoordinates}
+                color={color} weight={3.5} fillOpacity={5} />;
           } else {  
-            return <Polyline 
-                key={"d" + color}
-                positions={polyCoordinates}
-                color={color}
-                weight={2.25}
-                fillOpacity={5}
-                pathOptions={{
-                    dashArray: [5, 5],
-                    lineCap: 'round',
-                    lineJoin: 'round',
-                }} />;
+            return <Polyline key={"d" + color} positions={polyCoordinates}
+                color={color} weight={2.25} fillOpacity={5}
+                pathOptions={{ dashArray: [5, 5], lineCap: 'round', lineJoin: 'round',}} />;
           }
     };
         
@@ -100,14 +88,6 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
         const newIndex = (index - 1 + markers.length) % markers.length;
         openMarker(newIndex);
     };
-
-    const selectTrip = () => {
-        if (selectedTripIndex !== tripId) {
-            setSelectedTripIndex(tripId);
-            console.log(selectedTripIndex);
-        }
-        
-    }
     
     const flyToMarker = (index) => {
         const currentZoom = mapRef.getZoom();
@@ -126,6 +106,11 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
             }, 800);
         }
     };
+
+    const selectTrip = () => {
+        const newSelectedTripIndex = tripId;
+        setSelectedTripIndex(newSelectedTripIndex);
+    }
 
     return (
         <>
@@ -170,12 +155,7 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
                                 )}
                                 
                             </div>
-                            <Image
-                                alt={`${marker.author} at ${marker.city}`}
-                                src={marker.photo}
-                                fill
-                                className={styles.image}
-                            />
+                            <Photo marker={marker} isSelected={isSelected}/>
                         </div>
                     </Popup>
             </Marker>
@@ -184,3 +164,7 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
         </>
     );
 };
+
+// Photo component
+// call s3 API
+// state variables: isAPICalled

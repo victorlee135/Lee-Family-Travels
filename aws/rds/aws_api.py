@@ -145,6 +145,8 @@ def get_markers():
         trip_dict[tripId]["markers"].append(marker_dict)
 
     for tripId, dict in trip_dict.items():
+        sorted_markers = sorted(dict["markers"], key=lambda x: x["id"])
+        dict["markers"] = sorted_markers
         response.append(trip_dict[tripId])
 
     return jsonify({"tripData": response})
@@ -161,8 +163,11 @@ def get_object():
         object_data = response['Body'].read()
         content_type = response['ContentType']
 
+        base64_data = base64.b64encode(object_data).decode('utf-8')
+        data_uri = f'data:{content_type};base64,{base64_data}'
         # Return the object data with the appropriate content type
-        return object_data, 200, {'Content-Type': content_type}
+        return data_uri, 200
+    
     except Exception as e:
         return str(e), 500
 
@@ -183,13 +188,10 @@ def get_objects():
             object_data = response['Body'].read()
             content_type = response['ContentType']
 
-            data_base64 = base64.b64encode(object_data).decode('utf-8')
-
+            base64_data = base64.b64encode(object_data).decode('utf-8')
+            data_uri = f'data:{content_type};base64,{base64_data}'
             # Append the object data and content type to the list
-            objects.append({
-                'data': data_base64,
-                'content_type': content_type
-            })
+            objects.append(data_uri)
 
         # Return the list of objects with the appropriate content types
         return jsonify(objects), 200

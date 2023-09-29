@@ -106,10 +106,60 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
             }, 800);
         }
     };
+    
+    const initialImageList = Array.from({ length: markers.length }, () => null);
+    const [imageList, setImageList] = useState(initialImageList);
+    const [markerToSkip, setMarkerToSkip] = useState(null);
 
-    const selectTrip = () => {
+    const updateList = (indexToUpdate, newValue) => {
+        setImageList(prevList => {
+          return prevList.map((item, index) => {
+            if (index === indexToUpdate) {
+              // Update the element at the specified index
+              return newValue;
+            }
+            return item;
+          });
+        });
+      };
+
+    const handleGetImage = async (marker, index) => {
+        const tripFolder =  marker.photo.split("/")[1];
+        const fileName = marker.photo.split("/")[2];
+        axios
+            .get(`http://127.0.0.1:5000/api/trips/markers/get-object?tripFolder=${tripFolder}&fileName=${fileName}`)
+            .then((response) => {
+                updateList(index, response.data);
+                console.log("Called S3 api for " + tripFolder + "/" + fileName);
+                
+            })
+            .catch((error) => {
+                console.error('Error fetching object data:', error);
+            });
+    };
+
+    useEffect(() => {
+        if (!markerToSkip) {
+            return;
+        }
+        console.log("markerToSkip: ", markerToSkip);
+        markers.forEach((marker, index) => {
+            if (index !== markerToSkip) {
+                handleGetImage(marker, index);
+            }
+        });
+
+
+
+    }, [markerToSkip]);
+
+    const selectTrip = (marker, index) => {
         const newSelectedTripIndex = tripId;
         setSelectedTripIndex(newSelectedTripIndex);
+        if (!markerToSkip) {
+            handleGetImage(marker, index);
+            setMarkerToSkip(index);
+        }
     }
 
     return (
@@ -123,7 +173,7 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
                     title={`${marker.author} at ${marker.city}`}
                     ref={(ref) => (markerRefs.current[index] = ref)}
                     eventHandlers={{
-                        click: () => {selectTrip()},
+                        click: () => {selectTrip(marker, index)},
                     }}
                 >
                     <Popup autoClose={true}>
@@ -155,7 +205,18 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
                                 )}
                                 
                             </div>
-                            <Photo marker={marker} isSelected={isSelected}/>
+                            <div>
+                                {imageList[index] !== null ? (
+                                    <Image
+                                        alt={`${marker.author} at ${marker.city}`}
+                                        src={imageList[index]}
+                                        fill
+                                        className={styles.image}
+                                    />
+                                ) : (
+                                    <p>Loading Image...</p>
+                                )}
+                            </div>
                         </div>
                     </Popup>
             </Marker>

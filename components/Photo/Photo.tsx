@@ -54,3 +54,26 @@ export default function Photo({marker, isSelected} : PhotoProps) {
         </div>
     );
 };
+
+const handleGetImage = async (tripFolder, fileName) => {
+    try {
+        const response = await fetch(`/get-object?tripFolder=${tripFolder}&fileName=${fileName}`);
+        
+        if (response.ok) {
+            // Get the image data
+            const imageBlob = await response.blob();
+            
+            // Create a URL for the image data
+            const imageUrl = URL.createObjectURL(imageBlob);
+            
+            // Now, you can use `imageUrl` to display the image in your component
+            // For example, you can set it as the source of an image element
+            // or use it as a background image.
+            console.log("Image URL:", imageUrl);
+        } else {
+            console.error("Failed to fetch image:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error fetching image:", error);
+    }
+};

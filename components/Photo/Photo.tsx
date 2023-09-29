@@ -33,6 +33,11 @@ export default function Photo({marker, isSelected} : PhotoProps) {
                 console.error('Error fetching object data:', error);
             });
     }, [isSelected]);
+
+    // call api for first image
+
+    // once API successful, display image for rest
+
     
     return (
         <div>

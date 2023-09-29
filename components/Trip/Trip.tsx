@@ -164,7 +164,3 @@ export default function Trip({tripId, tripName, inputMarkers, mapRef, color, sel
         </>
     );
 };
-
-// Photo component
-// call s3 API
-// state variables: isAPICalled

@@ -191,8 +191,8 @@ export function changeVariables(view: boolean,
   export const specialTrips = new Map<string, string>([
     ["3", "#1972E4"],
     ["4", "#A621AC"],
-    ["8", "#A80A0B"],
-    ["9", "#036860"],
+    ["7", "#A80A0B"],
+    ["8", "#036860"],
     ["11", "#A200CC"],
     ["12", "#000C78"]
   ]);
